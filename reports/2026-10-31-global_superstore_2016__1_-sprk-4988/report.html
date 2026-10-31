@@ -1,0 +1,5723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Superstore 2016 Sales Analysis</title>
+<style>
+:root { --bg:#f5f7fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb; --accent:#2563eb; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:var(--bg); color:var(--ink); }
+header { padding:28px 24px 8px; max-width:1400px; margin:0 auto; }
+header h1 { margin:0 0 6px; font-size:28px; }
+header p { margin:0; color:var(--muted); }
+main { max-width:1400px; margin:0 auto; padding:16px 24px 40px; }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:20px; }
+.kpi { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.kpi .label { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.04em; }
+.kpi .value { font-size:26px; font-weight:700; margin-top:6px; }
+.grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; min-width:0; }
+.card h2 { margin:0 0 4px; font-size:17px; }
+.card .caption { margin:0 0 8px; color:var(--muted); font-size:13px; }
+.card.wide { grid-column:1 / -1; }
+.insights ol { margin:8px 0 0; padding-left:20px; line-height:1.6; }
+.table-tools { display:flex; gap:10px; align-items:center; margin:8px 0 10px; flex-wrap:wrap; }
+.table-tools input { padding:8px 10px; border:1px solid var(--line); border-radius:8px; min-width:240px; font-size:14px; }
+.table-tools span { color:var(--muted); font-size:13px; }
+.table-wrap { overflow:auto; max-height:520px; border:1px solid var(--line); border-radius:8px; }
+table.sprk-table { border-collapse:collapse; width:100%; font-size:13px; }
+table.sprk-table th { position:sticky; top:0; background:#eef2ff; cursor:pointer; user-select:none; white-space:nowrap; }
+table.sprk-table th, table.sprk-table td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; }
+table.sprk-table th.asc::after { content:" \25B2"; font-size:10px; }
+table.sprk-table th.desc::after { content:" \25BC"; font-size:10px; }
+table.sprk-table tbody tr:hover { background:#f9fafb; }
+footer { text-align:center; color:var(--muted); font-size:12px; padding:20px; }
+@media (max-width: 900px) { .grid { grid-template-columns:1fr; } header h1 { font-size:22px; } }
+</style>
+</head>
+<body>
+<header><h1>Global Superstore 2016 Sales Analysis</h1><p>Sales and Profit Overview by Category and Region with Filters</p></header>
+<main>
+<section class="kpis"><div class="kpi"><div class="label">Total Sales</div><div class="value">$12,649,677</div></div><div class="kpi"><div class="label">Total Profit</div><div class="value">$1,473,755</div></div><div class="kpi"><div class="label">Total Quantity Sold</div><div class="value">178,317</div></div><div class="kpi"><div class="label">Unique Customers</div><div class="value">17,415</div></div><div class="kpi"><div class="label">Average Discount</div><div class="value">14.29%</div></div></section>
+<section class="grid"><div class="card"><h2>Total Sales by Category</h2><p class="caption">Filtered by Segment</p><div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="3f37c2b7-40d8-405f-be24-f525210b012c" class="plotly-graph-div" style="height:430px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("3f37c2b7-40d8-405f-be24-f525210b012c")) {                    Plotly.newPlot(                        "3f37c2b7-40d8-405f-be24-f525210b012c",                        [{"hovertemplate":"%{x}\u003cbr\u003eSum of Sales: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"All Segment","visible":true,"x":["Technology","Furniture","Office Supplies"],"y":[4748657.49808,4110451.8983,3790567.3335],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Sales: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Consumer","visible":false,"x":["Technology","Furniture","Office Supplies"],"y":[2431140.01136,2128121.4269,1954849.3596],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Sales: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Corporate","visible":false,"x":["Technology","Furniture","Office Supplies"],"y":[1417791.35636,1264426.532,1143479.6331],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Sales: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Home Office","visible":false,"x":["Technology","Furniture","Office Supplies"],"y":[899726.1303600001,717903.9394,692238.3408],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"margin":{"t":70,"l":40,"r":20,"b":40},"showlegend":false,"xaxis":{"title":{"text":"Category"}},"yaxis":{"title":{"text":"Sum of Sales"}},"updatemenus":[{"active":0,"buttons":[{"args":[{"visible":[true,false,false,false]}],"label":"All Segment","method":"update"},{"args":[{"visible":[false,true,false,false]}],"label":"Consumer","method":"update"},{"args":[{"visible":[false,false,true,false]}],"label":"Corporate","method":"update"},{"args":[{"visible":[false,false,false,true]}],"label":"Home Office","method":"update"}],"showactive":true,"type":"dropdown","x":1,"xanchor":"right","y":1.2,"yanchor":"top"}],"annotations":[{"showarrow":false,"text":"Filter by Segment:","x":1,"xanchor":"right","xref":"paper","xshift":-150,"y":1.17,"yanchor":"top","yref":"paper"}],"height":430},                        {"responsive": true, "displaylogo": false}                    )                };                            </script>        </div></div><div class="card"><h2>Total Profit by Region</h2><p class="caption">Filtered by Market</p><div>                            <div id="c174b9cc-d9b9-4d2b-9e1f-119aad6b7aa7" class="plotly-graph-div" style="height:430px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("c174b9cc-d9b9-4d2b-9e1f-119aad6b7aa7")) {                    Plotly.newPlot(                        "c174b9cc-d9b9-4d2b-9e1f-119aad6b7aa7",                        [{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"All Market","visible":true,"x":["Western Europe","Eastern Asia","Southern Asia","Central America","Oceania","Western US","Eastern US","Northern Europe","Eastern Europe","Southern Europe","North Africa","Southern US","Central US","Caribbean","Central Africa","South America","Southern Africa","Eastern Africa","Southeastern Asia","Canada"],"y":[220626.5885,167101.851,159336.427,158983.44816,123089.112,108418.44889999997,91522.77999999998,83923.917,77084.88,70109.41799999999,57836.25,46749.43029999999,39806.36249999998,35571.32104,35383.71,28092.91788,24158.55,21900.909,17852.32899999999,17817.39],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Asia Pacific","visible":false,"x":["Eastern Asia","Southern Asia","Oceania","Southeastern Asia","Central Asia","Western Asia"],"y":[167101.851,159336.427,123089.112,17852.32899999999,-7282.010999999999,-53921.66999999999],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Europe","visible":false,"x":["Western Europe","Northern Europe","Eastern Europe","Southern Europe"],"y":[220626.5885,83923.917,77084.88,70109.41799999999],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"USCA","visible":false,"x":["Western US","Eastern US","Southern US","Central US","Canada"],"y":[108418.44889999997,91522.77999999998,46749.43029999999,39806.36249999998,17817.39],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"LATAM","visible":false,"x":["Central America","Caribbean","South America"],"y":[158983.44816,35571.32104,28092.91788],"type":"bar"},{"hovertemplate":"%{x}\u003cbr\u003eSum of Profit: %{y:,.2f}\u003cextra\u003e\u003c\u002fextra\u003e","name":"Africa","visible":false,"x":["North Africa","Central Africa","Southern Africa","Eastern Africa","Western Africa"],"y":[57836.25,35383.71,24158.55,21900.909,-50407.78799999999],"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"margin":{"t":70,"l":40,"r":20,"b":40},"showlegend":false,"xaxis":{"title":{"text":"Region"}},"yaxis":{"title":{"text":"Sum of Profit"}},"updatemenus":[{"active":0,"buttons":[{"args":[{"visible":[true,false,false,false,false,false]}],"label":"All Market","method":"update"},{"args":[{"visible":[false,true,false,false,false,false]}],"label":"Asia Pacific","method":"update"},{"args":[{"visible":[false,false,true,false,false,false]}],"label":"Europe","method":"update"},{"args":[{"visible":[false,false,false,true,false,false]}],"label":"USCA","method":"update"},{"args":[{"visible":[false,false,false,false,true,false]}],"label":"LATAM","method":"update"},{"args":[{"visible":[false,false,false,false,false,true]}],"label":"Africa","method":"update"}],"showactive":true,"type":"dropdown","x":1,"xanchor":"right","y":1.2,"yanchor":"top"}],"annotations":[{"showarrow":false,"text":"Filter by Market:","x":1,"xanchor":"right","xref":"paper","xshift":-150,"y":1.17,"yanchor":"top","yref":"paper"}],"height":430},                        {"responsive": true, "displaylogo": false}                    )                };                            </script>        </div></div></section>
+<section class="card wide insights" style="margin-top:16px"><h2>Key insights</h2><ol><li>Total sales reached $12,649,677 across 48 months.</li><li>Total profit was $1,473,755, with an average profit per order of $28.73.</li><li>The dataset includes 17,415 unique customers.</li><li>Average discount given was 14.29%.</li><li>Orders were shipped using 4 ship modes and belong to 3 segments.</li></ol></section>
+<section class="card wide" style="margin-top:16px">
+<h2>Data</h2>
+<div class="table-tools"><input id="sprk-search" type="search" placeholder="Search rows..."><span id="sprk-count"></span></div>
+<div class="table-wrap"><table class="dataframe sprk-table" id="sprk-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Row ID</th>
+      <th>Order ID</th>
+      <th>Order Date</th>
+      <th>Ship Date</th>
+      <th>Ship Mode</th>
+      <th>Customer ID</th>
+      <th>Customer Name</th>
+      <th>Segment</th>
+      <th>Postal Code</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Region</th>
+      <th>Market</th>
+      <th>Product ID</th>
+      <th>Category</th>
+      <th>Sub-Category</th>
+      <th>Product Name</th>
+      <th>Sales</th>
+      <th>Quantity</th>
+      <th>Discount</th>
+      <th>Profit</th>
+      <th>Shipping Cost</th>
+      <th>Order Priority</th>
+      <th>Tax</th>
+      <th>YearMonth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>40098</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>73120.0</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>TEC-PH-5816</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Convoy 3</td>
+      <td>321.98000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>162.15440</td>
+      <td>40.770</td>
+      <td>High</td>
+      <td>16.099000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>26341</td>
+      <td>IN-2014-JR162107-41675</td>
+      <td>2014-02-05</td>
+      <td>2014-02-07</td>
+      <td>Second Class</td>
+      <td>JR-162107</td>
+      <td>Justin Ritter</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Wollongong</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5379</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Novimex Executive Leather Armchair, Black</td>
+      <td>3709.39500</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>-288.76500</td>
+      <td>923.630</td>
+      <td>Critical</td>
+      <td>185.469750</td>
+      <td>2014-02</td>
+    </tr>
+    <tr>
+      <td>25330</td>
+      <td>IN-2014-CR127307-41929</td>
+      <td>2014-10-17</td>
+      <td>2014-10-18</td>
+      <td>First Class</td>
+      <td>CR-127307</td>
+      <td>Craig Reiter</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Brisbane</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5356</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, with Caller ID</td>
+      <td>7175.17100</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>3919.97100</td>
+      <td>915.490</td>
+      <td>Medium</td>
+      <td>358.758550</td>
+      <td>2014-10</td>
+    </tr>
+    <tr>
+      <td>13524</td>
+      <td>ES-2014-KM1637548-41667</td>
+      <td>2014-01-28</td>
+      <td>2014-01-30</td>
+      <td>First Class</td>
+      <td>KM-1637548</td>
+      <td>Katherine Murray</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Berlin</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5267</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Cordless</td>
+      <td>2892.51000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>2096.54000</td>
+      <td>910.160</td>
+      <td>Medium</td>
+      <td>144.625500</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>47221</td>
+      <td>SG-2014-RH9495111-41948</td>
+      <td>2014-11-05</td>
+      <td>2014-11-06</td>
+      <td>Same Day</td>
+      <td>RH-9495111</td>
+      <td>Rick Hansen</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Dakar</td>
+      <td>Dakar</td>
+      <td>Senegal</td>
+      <td>Western Africa</td>
+      <td>Africa</td>
+      <td>TEC-CO-6011</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Sharp Wireless Fax, High-Speed</td>
+      <td>3832.96000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>311.52000</td>
+      <td>903.040</td>
+      <td>Critical</td>
+      <td>191.648000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>22732</td>
+      <td>IN-2014-JM156557-41818</td>
+      <td>2014-06-28</td>
+      <td>2014-07-01</td>
+      <td>Second Class</td>
+      <td>JM-156557</td>
+      <td>Jim Mitchum</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Sydney</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5842</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, with Caller ID</td>
+      <td>2862.67500</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>763.27500</td>
+      <td>897.350</td>
+      <td>Critical</td>
+      <td>143.133750</td>
+      <td>2014-06</td>
+    </tr>
+    <tr>
+      <td>30570</td>
+      <td>IN-2012-TS2134092-41219</td>
+      <td>2012-11-06</td>
+      <td>2012-11-08</td>
+      <td>First Class</td>
+      <td>TS-2134092</td>
+      <td>Toby Swindell</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Porirua</td>
+      <td>Wellington</td>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5378</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Novimex Executive Leather Armchair, Adjustable</td>
+      <td>1822.08000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>564.84000</td>
+      <td>894.770</td>
+      <td>Critical</td>
+      <td>91.104000</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>31192</td>
+      <td>IN-2013-MB1808592-41378</td>
+      <td>2013-04-14</td>
+      <td>2013-04-18</td>
+      <td>Standard Class</td>
+      <td>MB-1808592</td>
+      <td>Mick Brown</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Hamilton</td>
+      <td>Waikato</td>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3764</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Chromcraft Conference Table, Fully Assembled</td>
+      <td>5244.84000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>996.48000</td>
+      <td>878.380</td>
+      <td>High</td>
+      <td>262.242000</td>
+      <td>2013-04</td>
+    </tr>
+    <tr>
+      <td>40099</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>73120.0</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>FUR-BO-5957</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Sauder Facets Collection Library, Sky Alder Finish</td>
+      <td>341.96000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>54.71360</td>
+      <td>25.270</td>
+      <td>High</td>
+      <td>17.098000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>36258</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>98103.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-CH-4421</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Global Push Button Manager's Chair, Indigo</td>
+      <td>48.71200</td>
+      <td>1</td>
+      <td>0.200</td>
+      <td>5.48010</td>
+      <td>11.130</td>
+      <td>High</td>
+      <td>2.435600</td>
+      <td>2012-03</td>
+    </tr>
+    <tr>
+      <td>36259</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>98103.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-AR-5309</td>
+      <td>Office Supplies</td>
+      <td>Art</td>
+      <td>Newell 330</td>
+      <td>17.94000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>4.66440</td>
+      <td>4.290</td>
+      <td>High</td>
+      <td>0.897000</td>
+      <td>2012-03</td>
+    </tr>
+    <tr>
+      <td>28879</td>
+      <td>ID-2013-AJ107801-41383</td>
+      <td>2013-04-19</td>
+      <td>2013-04-22</td>
+      <td>First Class</td>
+      <td>AJ-107801</td>
+      <td>Anthony Jacobs</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Kabul</td>
+      <td>Kabul</td>
+      <td>Afghanistan</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3420</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Bevis Conference Table, Fully Assembled</td>
+      <td>4626.15000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>647.55000</td>
+      <td>835.570</td>
+      <td>High</td>
+      <td>231.307500</td>
+      <td>2013-04</td>
+    </tr>
+    <tr>
+      <td>45794</td>
+      <td>SA-2012-MM7260110-41269</td>
+      <td>2012-12-26</td>
+      <td>2012-12-28</td>
+      <td>Second Class</td>
+      <td>MM-7260110</td>
+      <td>Magdelene Morse</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Jizan</td>
+      <td>Jizan</td>
+      <td>Saudi Arabia</td>
+      <td>Western Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3807</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, with Caller ID</td>
+      <td>2616.96000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>1151.40000</td>
+      <td>832.410</td>
+      <td>Critical</td>
+      <td>130.848000</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>4132</td>
+      <td>MX-2013-VF2171518-41591</td>
+      <td>2013-11-13</td>
+      <td>2013-11-13</td>
+      <td>Same Day</td>
+      <td>VF-2171518</td>
+      <td>Vicky Freymann</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Toledo</td>
+      <td>Parana</td>
+      <td>Brazil</td>
+      <td>South America</td>
+      <td>LATAM</td>
+      <td>FUR-CH-4530</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Harbour Creations Executive Leather Armchair, Adjustable</td>
+      <td>2221.80000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>622.02000</td>
+      <td>810.250</td>
+      <td>Critical</td>
+      <td>111.090000</td>
+      <td>2013-11</td>
+    </tr>
+    <tr>
+      <td>27704</td>
+      <td>IN-2014-PF1912027-41796</td>
+      <td>2014-06-06</td>
+      <td>2014-06-08</td>
+      <td>Second Class</td>
+      <td>PF-1912027</td>
+      <td>Peter Fuller</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Mudanjiang</td>
+      <td>Heilongjiang</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4959</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>KitchenAid Microwave, White</td>
+      <td>3701.52000</td>
+      <td>12</td>
+      <td>0.000</td>
+      <td>1036.08000</td>
+      <td>804.540</td>
+      <td>Critical</td>
+      <td>185.076000</td>
+      <td>2014-06</td>
+    </tr>
+    <tr>
+      <td>13779</td>
+      <td>ES-2015-BP1118545-42216</td>
+      <td>2015-07-31</td>
+      <td>2015-08-03</td>
+      <td>Second Class</td>
+      <td>BP-1118545</td>
+      <td>Ben Peterman</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Paris</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-3575</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Refrigerator, Red</td>
+      <td>1869.58800</td>
+      <td>4</td>
+      <td>0.100</td>
+      <td>186.94800</td>
+      <td>801.660</td>
+      <td>Critical</td>
+      <td>93.479400</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>39519</td>
+      <td>CA-2012-AB10015140-40958</td>
+      <td>2012-02-19</td>
+      <td>2012-02-25</td>
+      <td>Standard Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>76017.0</td>
+      <td>Arlington</td>
+      <td>Texas</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>OFF-ST-3078</td>
+      <td>Office Supplies</td>
+      <td>Storage</td>
+      <td>Akro Stacking Bins</td>
+      <td>12.62400</td>
+      <td>2</td>
+      <td>0.200</td>
+      <td>-2.52480</td>
+      <td>1.970</td>
+      <td>Low</td>
+      <td>0.631200</td>
+      <td>2012-02</td>
+    </tr>
+    <tr>
+      <td>12069</td>
+      <td>ES-2015-PJ1883564-42255</td>
+      <td>2015-09-08</td>
+      <td>2015-09-14</td>
+      <td>Standard Class</td>
+      <td>PJ-1883564</td>
+      <td>Patrick Jones</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Prato</td>
+      <td>Tuscany</td>
+      <td>Italy</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4743</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, Red</td>
+      <td>7958.58000</td>
+      <td>14</td>
+      <td>0.000</td>
+      <td>3979.08000</td>
+      <td>778.320</td>
+      <td>Low</td>
+      <td>397.929000</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>22096</td>
+      <td>IN-2015-JS156857-42035</td>
+      <td>2015-01-31</td>
+      <td>2015-02-01</td>
+      <td>First Class</td>
+      <td>JS-156857</td>
+      <td>Jim Sink</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Townsville</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3597</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Fax Machine, High-Speed</td>
+      <td>2565.59400</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>28.40400</td>
+      <td>766.930</td>
+      <td>Critical</td>
+      <td>128.279700</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>49463</td>
+      <td>TZ-2015-RH9555129-42343</td>
+      <td>2015-12-05</td>
+      <td>2015-12-07</td>
+      <td>Second Class</td>
+      <td>RH-9555129</td>
+      <td>Ritsa Hightower</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Uvinza</td>
+      <td>Kigoma</td>
+      <td>Tanzania</td>
+      <td>Eastern Africa</td>
+      <td>Africa</td>
+      <td>OFF-AP-4967</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>KitchenAid Stove, White</td>
+      <td>3409.74000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>818.28000</td>
+      <td>763.380</td>
+      <td>High</td>
+      <td>170.487000</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>46630</td>
+      <td>PL-2013-AB600103-41494</td>
+      <td>2013-08-08</td>
+      <td>2013-08-10</td>
+      <td>First Class</td>
+      <td>AB-600103</td>
+      <td>Ann Blume</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Bytom</td>
+      <td>Silesia</td>
+      <td>Poland</td>
+      <td>Eastern Europe</td>
+      <td>Europe</td>
+      <td>FUR-TA-4644</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Hon Computer Table, with Bottom Storage</td>
+      <td>1977.72000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>276.84000</td>
+      <td>759.470</td>
+      <td>Critical</td>
+      <td>98.886000</td>
+      <td>2013-08</td>
+    </tr>
+    <tr>
+      <td>36260</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>98103.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-ST-3744</td>
+      <td>Office Supplies</td>
+      <td>Storage</td>
+      <td>Carina 42"Hx23 3/4"W Media Storage Unit</td>
+      <td>242.94000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>4.85880</td>
+      <td>1.280</td>
+      <td>High</td>
+      <td>12.147000</td>
+      <td>2012-03</td>
+    </tr>
+    <tr>
+      <td>21586</td>
+      <td>IN-2012-JK1532527-41030</td>
+      <td>2012-05-01</td>
+      <td>2012-05-02</td>
+      <td>First Class</td>
+      <td>JK-1532527</td>
+      <td>Jason Klamczynski</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Suzhou</td>
+      <td>Anhui</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5774</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>SAFCO Executive Leather Armchair, Black</td>
+      <td>2754.00000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>358.02000</td>
+      <td>752.470</td>
+      <td>Critical</td>
+      <td>137.700000</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>13528</td>
+      <td>ES-2014-LB16795139-41697</td>
+      <td>2014-02-27</td>
+      <td>2014-03-01</td>
+      <td>Second Class</td>
+      <td>LB-16795139</td>
+      <td>Laurel Beltran</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Edinburgh</td>
+      <td>Scotland</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4960</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>KitchenAid Refrigerator, Black</td>
+      <td>5273.70000</td>
+      <td>10</td>
+      <td>0.000</td>
+      <td>1898.40000</td>
+      <td>730.910</td>
+      <td>High</td>
+      <td>263.685000</td>
+      <td>2014-02</td>
+    </tr>
+    <tr>
+      <td>1570</td>
+      <td>US-2015-NP1832582-42216</td>
+      <td>2015-07-31</td>
+      <td>2015-08-01</td>
+      <td>First Class</td>
+      <td>NP-1832582</td>
+      <td>Naresj Patel</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Juárez</td>
+      <td>Chihuahua</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>1713.84000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>445.52000</td>
+      <td>728.968</td>
+      <td>Critical</td>
+      <td>85.692000</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>3484</td>
+      <td>MX-2015-VD2167039-42252</td>
+      <td>2015-09-05</td>
+      <td>2015-09-08</td>
+      <td>First Class</td>
+      <td>VD-2167039</td>
+      <td>Valerie Dominguez</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Soyapango</td>
+      <td>San Salvador</td>
+      <td>El Salvador</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>FUR-TA-4643</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Hon Computer Table, Fully Assembled</td>
+      <td>2106.49600</td>
+      <td>8</td>
+      <td>0.200</td>
+      <td>526.49600</td>
+      <td>728.389</td>
+      <td>Critical</td>
+      <td>105.324800</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>30191</td>
+      <td>IN-2012-PB19210127-41259</td>
+      <td>2012-12-16</td>
+      <td>2012-12-19</td>
+      <td>First Class</td>
+      <td>PB-19210127</td>
+      <td>Phillip Breyer</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Taipei</td>
+      <td>Taipei City</td>
+      <td>Taiwan</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-5060</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Conference Table, with Bottom Storage</td>
+      <td>1715.16000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>720.36000</td>
+      <td>725.570</td>
+      <td>Critical</td>
+      <td>85.758000</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>11645</td>
+      <td>ES-2012-EB1411048-40981</td>
+      <td>2012-03-13</td>
+      <td>2012-03-16</td>
+      <td>Second Class</td>
+      <td>EB-1411048</td>
+      <td>Eugene Barchas</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Leipzig</td>
+      <td>Saxony</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4743</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, Red</td>
+      <td>3069.73800</td>
+      <td>6</td>
+      <td>0.100</td>
+      <td>1364.23800</td>
+      <td>725.340</td>
+      <td>Critical</td>
+      <td>153.486900</td>
+      <td>2012-03</td>
+    </tr>
+    <tr>
+      <td>38460</td>
+      <td>CA-2012-AH10030140-41020</td>
+      <td>2012-04-21</td>
+      <td>2012-04-23</td>
+      <td>Second Class</td>
+      <td>AH-100301406</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>12180.0</td>
+      <td>Troy</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-FA-6129</td>
+      <td>Office Supplies</td>
+      <td>Fasteners</td>
+      <td>Staples</td>
+      <td>247.84000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>121.44160</td>
+      <td>55.200</td>
+      <td>Critical</td>
+      <td>12.392000</td>
+      <td>2012-04</td>
+    </tr>
+    <tr>
+      <td>22999</td>
+      <td>IN-2013-BP1123058-41329</td>
+      <td>2013-02-24</td>
+      <td>2013-02-24</td>
+      <td>Same Day</td>
+      <td>BP-1123058</td>
+      <td>Benjamin Patterson</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Surat</td>
+      <td>Gujarat</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5443</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Office Star Executive Leather Armchair, Red</td>
+      <td>1878.72000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>582.36000</td>
+      <td>704.080</td>
+      <td>Critical</td>
+      <td>93.936000</td>
+      <td>2013-02</td>
+    </tr>
+    <tr>
+      <td>220</td>
+      <td>US-2012-RR1952536-41270</td>
+      <td>2012-12-27</td>
+      <td>2012-12-29</td>
+      <td>Second Class</td>
+      <td>RR-1952536</td>
+      <td>Rick Reed</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Santo Domingo</td>
+      <td>Santo Domingo</td>
+      <td>Dominican Republic</td>
+      <td>Caribbean</td>
+      <td>LATAM</td>
+      <td>TEC-PH-5841</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, VoIP</td>
+      <td>1696.64000</td>
+      <td>5</td>
+      <td>0.200</td>
+      <td>-148.46000</td>
+      <td>704.056</td>
+      <td>Critical</td>
+      <td>84.832000</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>10648</td>
+      <td>ES-2013-BS1136545-41472</td>
+      <td>2013-07-17</td>
+      <td>2013-07-19</td>
+      <td>First Class</td>
+      <td>BS-1136545</td>
+      <td>Bill Shonely</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Saint-Brieuc</td>
+      <td>Brittany</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-MA-5503</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Okidata Inkjet, Wireless</td>
+      <td>2402.86500</td>
+      <td>9</td>
+      <td>0.150</td>
+      <td>763.15500</td>
+      <td>699.550</td>
+      <td>Critical</td>
+      <td>120.143250</td>
+      <td>2013-07</td>
+    </tr>
+    <tr>
+      <td>40977</td>
+      <td>CA-2013-AH10030140-41635</td>
+      <td>2013-12-27</td>
+      <td>2013-12-31</td>
+      <td>Standard Class</td>
+      <td>AH-100301404</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>94122.0</td>
+      <td>San Francisco</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>TEC-PH-4389</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Geemarc AmpliPOWER60</td>
+      <td>668.16000</td>
+      <td>9</td>
+      <td>0.200</td>
+      <td>75.16800</td>
+      <td>45.740</td>
+      <td>Medium</td>
+      <td>33.408000</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>21286</td>
+      <td>IN-2012-DP131057-41215</td>
+      <td>2012-11-02</td>
+      <td>2012-11-04</td>
+      <td>Second Class</td>
+      <td>DP-131057</td>
+      <td>Dave Poirier</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Gold Coast</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-3579</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Stove, Red</td>
+      <td>2526.93000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>561.48000</td>
+      <td>689.800</td>
+      <td>Critical</td>
+      <td>126.346500</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>40976</td>
+      <td>CA-2013-AH10030140-41635</td>
+      <td>2013-12-27</td>
+      <td>2013-12-31</td>
+      <td>Standard Class</td>
+      <td>AH-100301404</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>94122.0</td>
+      <td>San Francisco</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-ST-4291</td>
+      <td>Office Supplies</td>
+      <td>Storage</td>
+      <td>Fellowes Super Stor/Drawer Files</td>
+      <td>323.10000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>61.38900</td>
+      <td>26.700</td>
+      <td>Medium</td>
+      <td>16.155000</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>47905</td>
+      <td>CG-2012-AH1003033-41165</td>
+      <td>2012-09-13</td>
+      <td>2012-09-14</td>
+      <td>First Class</td>
+      <td>AH-1003033</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Kamina</td>
+      <td>Katanga</td>
+      <td>Democratic Republic of the Congo</td>
+      <td>Central Africa</td>
+      <td>Africa</td>
+      <td>TEC-PH-3148</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Smart Phone, Full Size</td>
+      <td>3817.26000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>1068.66000</td>
+      <td>678.150</td>
+      <td>High</td>
+      <td>190.863000</td>
+      <td>2012-09</td>
+    </tr>
+    <tr>
+      <td>36651</td>
+      <td>CA-2012-AH10030140-41041</td>
+      <td>2012-05-12</td>
+      <td>2012-05-18</td>
+      <td>Standard Class</td>
+      <td>AH-100301404</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>90004.0</td>
+      <td>Los Angeles</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-CH-4840</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Iceberg Nesting Folding Chair, 19w x 6d x 43h</td>
+      <td>279.45600</td>
+      <td>6</td>
+      <td>0.200</td>
+      <td>20.95920</td>
+      <td>11.690</td>
+      <td>Medium</td>
+      <td>13.972800</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>40100</td>
+      <td>CA-2012-AH10030140-41273</td>
+      <td>2012-12-30</td>
+      <td>2012-12-31</td>
+      <td>First Class</td>
+      <td>AH-100301406</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>10035.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>TEC-AC-6340</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Verbatim 25 GB 6x Blu-ray Single Layer Recordable Disc, 10/Pack</td>
+      <td>34.77000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>11.47410</td>
+      <td>8.220</td>
+      <td>High</td>
+      <td>1.738500</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>15380</td>
+      <td>ES-2015-PO18865139-42018</td>
+      <td>2015-01-14</td>
+      <td>2015-01-18</td>
+      <td>Standard Class</td>
+      <td>PO-18865139</td>
+      <td>Patrick O'Donnell</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Stockton-on-Tees</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-3598</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Fax Machine, Laser</td>
+      <td>4141.02000</td>
+      <td>13</td>
+      <td>0.000</td>
+      <td>1697.67000</td>
+      <td>668.960</td>
+      <td>High</td>
+      <td>207.051000</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>28046</td>
+      <td>IN-2012-DL128657-40918</td>
+      <td>2012-01-10</td>
+      <td>2012-01-11</td>
+      <td>First Class</td>
+      <td>DL-128657</td>
+      <td>Dan Lawera</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Brisbane</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5356</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, with Caller ID</td>
+      <td>2875.09500</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>511.09500</td>
+      <td>665.270</td>
+      <td>Medium</td>
+      <td>143.754750</td>
+      <td>2012-01</td>
+    </tr>
+    <tr>
+      <td>21316</td>
+      <td>ID-2014-JB1600059-41873</td>
+      <td>2014-08-22</td>
+      <td>2014-08-26</td>
+      <td>Standard Class</td>
+      <td>JB-1600059</td>
+      <td>Joy Bell-</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Mataram</td>
+      <td>Nusa Tenggara Barat</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>3200.59620</td>
+      <td>6</td>
+      <td>0.170</td>
+      <td>-77.20380</td>
+      <td>660.870</td>
+      <td>High</td>
+      <td>160.029810</td>
+      <td>2014-08</td>
+    </tr>
+    <tr>
+      <td>29272</td>
+      <td>IN-2015-BF1100558-42319</td>
+      <td>2015-11-11</td>
+      <td>2015-11-15</td>
+      <td>Standard Class</td>
+      <td>BF-1100558</td>
+      <td>Barry Franz</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Gorakhpur</td>
+      <td>Haryana</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5269</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, with Caller ID</td>
+      <td>4518.78000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>632.52000</td>
+      <td>658.690</td>
+      <td>High</td>
+      <td>225.939000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>25795</td>
+      <td>IN-2015-VG2180558-42273</td>
+      <td>2015-09-26</td>
+      <td>2015-09-28</td>
+      <td>Second Class</td>
+      <td>VG-2180558</td>
+      <td>Vivek Grady</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Thiruvananthapuram</td>
+      <td>Kerala</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5951</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Sauder Classic Bookcase, Traditional</td>
+      <td>5667.87000</td>
+      <td>13</td>
+      <td>0.000</td>
+      <td>2097.03000</td>
+      <td>658.350</td>
+      <td>Medium</td>
+      <td>283.393500</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>16681</td>
+      <td>ES-2013-GT14710139-41621</td>
+      <td>2013-12-13</td>
+      <td>2013-12-17</td>
+      <td>Standard Class</td>
+      <td>GT-14710139</td>
+      <td>Greg Tran</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Huddersfield</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5267</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Cordless</td>
+      <td>5785.02000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>404.73000</td>
+      <td>656.730</td>
+      <td>High</td>
+      <td>289.251000</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>15953</td>
+      <td>IT-2012-ZC2191048-41174</td>
+      <td>2012-09-22</td>
+      <td>2012-09-24</td>
+      <td>First Class</td>
+      <td>ZC-2191048</td>
+      <td>Zuschuss Carroll</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Berlin</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-3874</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Cuisinart Stove, Silver</td>
+      <td>3018.62400</td>
+      <td>7</td>
+      <td>0.200</td>
+      <td>377.24400</td>
+      <td>655.910</td>
+      <td>Critical</td>
+      <td>150.931200</td>
+      <td>2012-09</td>
+    </tr>
+    <tr>
+      <td>34608</td>
+      <td>CA-2014-AH10030140-41719</td>
+      <td>2014-03-21</td>
+      <td>2014-03-26</td>
+      <td>Second Class</td>
+      <td>AH-100301408</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>39503.0</td>
+      <td>Gulfport</td>
+      <td>Mississippi</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>FUR-FU-4072</td>
+      <td>Furniture</td>
+      <td>Furnishings</td>
+      <td>Eldon Image Series Desk Accessories, Ebony</td>
+      <td>86.45000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>38.03800</td>
+      <td>5.730</td>
+      <td>Medium</td>
+      <td>4.322500</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>13847</td>
+      <td>IT-2014-EB1384045-41706</td>
+      <td>2014-03-08</td>
+      <td>2014-03-08</td>
+      <td>Same Day</td>
+      <td>EB-1384045</td>
+      <td>Ellis Ballard</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Montreuil</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-CH-5441</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Office Star Executive Leather Armchair, Adjustable</td>
+      <td>2092.50000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>720.75000</td>
+      <td>652.980</td>
+      <td>Critical</td>
+      <td>104.625000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>24341</td>
+      <td>IN-2015-AP1091527-42244</td>
+      <td>2015-08-28</td>
+      <td>2015-08-29</td>
+      <td>First Class</td>
+      <td>AP-1091527</td>
+      <td>Arthur Prichep</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Shouguang</td>
+      <td>Shandong</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5380</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Novimex Executive Leather Armchair, Red</td>
+      <td>2761.20000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>110.34000</td>
+      <td>644.750</td>
+      <td>High</td>
+      <td>138.060000</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>28701</td>
+      <td>IN-2015-SW2027558-42125</td>
+      <td>2015-05-01</td>
+      <td>2015-05-01</td>
+      <td>Same Day</td>
+      <td>SW-2027558</td>
+      <td>Scott Williamson</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Jamshedpur</td>
+      <td>Jharkhand</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-MA-5007</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Konica Inkjet, White</td>
+      <td>2174.13000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>500.01000</td>
+      <td>637.860</td>
+      <td>Critical</td>
+      <td>108.706500</td>
+      <td>2015-05</td>
+    </tr>
+    <tr>
+      <td>6550</td>
+      <td>MX-2015-JH15820141-42356</td>
+      <td>2015-12-18</td>
+      <td>2015-12-20</td>
+      <td>Second Class</td>
+      <td>JH-15820141</td>
+      <td>John Huston</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Paysandú</td>
+      <td>Paysandú</td>
+      <td>Uruguay</td>
+      <td>South America</td>
+      <td>LATAM</td>
+      <td>FUR-CH-4531</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Harbour Creations Executive Leather Armchair, Black</td>
+      <td>3473.14000</td>
+      <td>11</td>
+      <td>0.000</td>
+      <td>868.12000</td>
+      <td>634.529</td>
+      <td>High</td>
+      <td>173.657000</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>37425</td>
+      <td>US-2012-AH10030140-41206</td>
+      <td>2012-10-24</td>
+      <td>2012-10-27</td>
+      <td>First Class</td>
+      <td>AH-100301404</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>94109.0</td>
+      <td>San Francisco</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-BI-4372</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>GBC VeloBind Cover Sets</td>
+      <td>49.40800</td>
+      <td>4</td>
+      <td>0.200</td>
+      <td>18.52800</td>
+      <td>2.840</td>
+      <td>High</td>
+      <td>2.470400</td>
+      <td>2012-10</td>
+    </tr>
+    <tr>
+      <td>48360</td>
+      <td>IR-2015-TG1164060-42265</td>
+      <td>2015-09-18</td>
+      <td>2015-09-21</td>
+      <td>First Class</td>
+      <td>TG-1164060</td>
+      <td>Trudy Glocke</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Behshahr</td>
+      <td>Mazandaran</td>
+      <td>Iran</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3678</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Canon Copy Machine, Color</td>
+      <td>2108.64000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>527.04000</td>
+      <td>630.970</td>
+      <td>Critical</td>
+      <td>105.432000</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>40101</td>
+      <td>CA-2012-AH10030140-41273</td>
+      <td>2012-12-30</td>
+      <td>2012-12-31</td>
+      <td>First Class</td>
+      <td>AH-100301406</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>10035.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-LA-3231</td>
+      <td>Office Supplies</td>
+      <td>Labels</td>
+      <td>Avery 51</td>
+      <td>18.90000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>8.69400</td>
+      <td>1.300</td>
+      <td>High</td>
+      <td>0.945000</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>30190</td>
+      <td>IN-2012-PB19210127-41259</td>
+      <td>2012-12-16</td>
+      <td>2012-12-19</td>
+      <td>First Class</td>
+      <td>PB-19210127</td>
+      <td>Phillip Breyer</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Taipei</td>
+      <td>Taipei City</td>
+      <td>Taiwan</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5762</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Classic Bookcase, Pine</td>
+      <td>2197.50000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>153.75000</td>
+      <td>627.270</td>
+      <td>Critical</td>
+      <td>109.875000</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>42336</td>
+      <td>MZ-2014-DG330087-41991</td>
+      <td>2014-12-18</td>
+      <td>2014-12-18</td>
+      <td>Same Day</td>
+      <td>DG-330087</td>
+      <td>Deirdre Greer</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Maputo</td>
+      <td>Cidade De Maputo</td>
+      <td>Mozambique</td>
+      <td>Eastern Africa</td>
+      <td>Africa</td>
+      <td>TEC-PH-5269</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, with Caller ID</td>
+      <td>2582.16000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>593.88000</td>
+      <td>627.170</td>
+      <td>High</td>
+      <td>129.108000</td>
+      <td>2014-12</td>
+    </tr>
+    <tr>
+      <td>29047</td>
+      <td>IN-2013-SG2047058-41424</td>
+      <td>2013-05-30</td>
+      <td>2013-05-31</td>
+      <td>First Class</td>
+      <td>SG-2047058</td>
+      <td>Sheri Gordon</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Bhopal</td>
+      <td>Madhya Pradesh</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-4590</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Hewlett Wireless Fax, Color</td>
+      <td>1526.52000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>732.72000</td>
+      <td>625.770</td>
+      <td>Critical</td>
+      <td>76.326000</td>
+      <td>2013-05</td>
+    </tr>
+    <tr>
+      <td>38461</td>
+      <td>CA-2012-AH10030140-41020</td>
+      <td>2012-04-21</td>
+      <td>2012-04-23</td>
+      <td>Second Class</td>
+      <td>AH-100301406</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>12180.0</td>
+      <td>Troy</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-2937</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>ACCOHIDE 3-Ring Binder, Blue, 1"</td>
+      <td>9.91200</td>
+      <td>3</td>
+      <td>0.200</td>
+      <td>3.34530</td>
+      <td>1.200</td>
+      <td>Critical</td>
+      <td>0.495600</td>
+      <td>2012-04</td>
+    </tr>
+    <tr>
+      <td>29601</td>
+      <td>IN-2013-GP1474058-41419</td>
+      <td>2013-05-25</td>
+      <td>2013-05-28</td>
+      <td>Second Class</td>
+      <td>GP-1474058</td>
+      <td>Guy Phonely</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Delhi</td>
+      <td>Delhi</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3766</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Chromcraft Conference Table, with Bottom Storage</td>
+      <td>1745.34000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>226.86000</td>
+      <td>616.270</td>
+      <td>Critical</td>
+      <td>87.267000</td>
+      <td>2013-05</td>
+    </tr>
+    <tr>
+      <td>23499</td>
+      <td>IN-2015-MW182207-42221</td>
+      <td>2015-08-05</td>
+      <td>2015-08-06</td>
+      <td>First Class</td>
+      <td>MW-182207</td>
+      <td>Mitch Webber</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Geraldton</td>
+      <td>Western Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-3577</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Refrigerator, White</td>
+      <td>4191.50700</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>1164.26700</td>
+      <td>614.340</td>
+      <td>High</td>
+      <td>209.575350</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>36652</td>
+      <td>CA-2012-AH10030140-41041</td>
+      <td>2012-05-12</td>
+      <td>2012-05-18</td>
+      <td>Standard Class</td>
+      <td>AH-100301404</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>90004.0</td>
+      <td>Los Angeles</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-PA-4014</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>EcoTones Memo Sheets</td>
+      <td>8.00000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>3.84000</td>
+      <td>1.150</td>
+      <td>Medium</td>
+      <td>0.400000</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>26634</td>
+      <td>IN-2015-CS1246011-42074</td>
+      <td>2015-03-11</td>
+      <td>2015-03-13</td>
+      <td>Second Class</td>
+      <td>CS-1246011</td>
+      <td>Chuck Sachs</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Dhaka</td>
+      <td>Dhaka</td>
+      <td>Bangladesh</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5760</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Classic Bookcase, Metal</td>
+      <td>3063.27000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>581.91000</td>
+      <td>609.240</td>
+      <td>High</td>
+      <td>153.163500</td>
+      <td>2015-03</td>
+    </tr>
+    <tr>
+      <td>34496</td>
+      <td>CA-2015-AH10030140-42357</td>
+      <td>2015-12-19</td>
+      <td>2015-12-23</td>
+      <td>Standard Class</td>
+      <td>AH-100301406</td>
+      <td>Aaron Hawkins</td>
+      <td>Corporate</td>
+      <td>19134.0</td>
+      <td>Philadelphia</td>
+      <td>Pennsylvania</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-AR-3276</td>
+      <td>Office Supplies</td>
+      <td>Art</td>
+      <td>Avery Fluorescent Highlighter Four-Color Set</td>
+      <td>18.70400</td>
+      <td>7</td>
+      <td>0.200</td>
+      <td>2.33800</td>
+      <td>1.130</td>
+      <td>Medium</td>
+      <td>0.935200</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>10522</td>
+      <td>ES-2015-MS1798048-42227</td>
+      <td>2015-08-11</td>
+      <td>2015-08-16</td>
+      <td>Second Class</td>
+      <td>MS-1798048</td>
+      <td>Michael Stewart</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Munster</td>
+      <td>Lower Saxony</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5839</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Cordless</td>
+      <td>4473.00000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>313.11000</td>
+      <td>604.400</td>
+      <td>Medium</td>
+      <td>223.650000</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>10549</td>
+      <td>IT-2014-KC1667548-41882</td>
+      <td>2014-08-31</td>
+      <td>2014-09-03</td>
+      <td>First Class</td>
+      <td>KC-1667548</td>
+      <td>Kimberly Carter</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Celle</td>
+      <td>Lower Saxony</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3130</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Audio Dock, with Caller ID</td>
+      <td>1502.01000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>225.18000</td>
+      <td>600.210</td>
+      <td>Critical</td>
+      <td>75.100500</td>
+      <td>2014-08</td>
+    </tr>
+    <tr>
+      <td>25314</td>
+      <td>IN-2015-DB1340527-42022</td>
+      <td>2015-01-18</td>
+      <td>2015-01-23</td>
+      <td>Standard Class</td>
+      <td>DB-1340527</td>
+      <td>Denny Blanton</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Wuxi</td>
+      <td>Jiangsu</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5774</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>SAFCO Executive Leather Armchair, Black</td>
+      <td>5049.00000</td>
+      <td>11</td>
+      <td>0.000</td>
+      <td>656.37000</td>
+      <td>595.500</td>
+      <td>High</td>
+      <td>252.450000</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>32637</td>
+      <td>CA-2015-AS10045140-42007</td>
+      <td>2015-01-03</td>
+      <td>2015-01-05</td>
+      <td>First Class</td>
+      <td>AS-100451408</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>28540.0</td>
+      <td>Jacksonville</td>
+      <td>North Carolina</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>TEC-MA-3788</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Cisco CP-7937G Unified IP Conference Station Phone</td>
+      <td>695.70000</td>
+      <td>2</td>
+      <td>0.500</td>
+      <td>-27.82800</td>
+      <td>160.190</td>
+      <td>High</td>
+      <td>34.785000</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>16653</td>
+      <td>IT-2015-DK13090120-42345</td>
+      <td>2015-12-07</td>
+      <td>2015-12-08</td>
+      <td>First Class</td>
+      <td>DK-13090120</td>
+      <td>Dave Kipp</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Seville</td>
+      <td>Andalusía</td>
+      <td>Spain</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>FUR-BO-5760</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Classic Bookcase, Metal</td>
+      <td>2188.05000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>1050.15000</td>
+      <td>593.910</td>
+      <td>High</td>
+      <td>109.402500</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>28932</td>
+      <td>IN-2015-CS1184558-42354</td>
+      <td>2015-12-16</td>
+      <td>2015-12-19</td>
+      <td>First Class</td>
+      <td>CS-1184558</td>
+      <td>Cari Sayre</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Raipur</td>
+      <td>Uttarakhand</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3779</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Chromcraft Wood Table, Rectangular</td>
+      <td>1920.36000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>652.92000</td>
+      <td>592.770</td>
+      <td>Critical</td>
+      <td>96.018000</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>8029</td>
+      <td>MX-2015-EM1420082-42328</td>
+      <td>2015-11-20</td>
+      <td>2015-11-20</td>
+      <td>Same Day</td>
+      <td>EM-1420082</td>
+      <td>Evan Minnotte</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Gómez Palacio</td>
+      <td>Durango</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>TEC-PH-5839</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Cordless</td>
+      <td>1704.00000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>119.28000</td>
+      <td>592.726</td>
+      <td>Critical</td>
+      <td>85.200000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>50411</td>
+      <td>UP-2012-DW3480137-41221</td>
+      <td>2012-11-08</td>
+      <td>2012-11-10</td>
+      <td>First Class</td>
+      <td>DW-3480137</td>
+      <td>Dianna Wilson</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Kharkiv</td>
+      <td>Kharkiv</td>
+      <td>Ukraine</td>
+      <td>Eastern Europe</td>
+      <td>Europe</td>
+      <td>FUR-TA-3771</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Chromcraft Round Table, Rectangular</td>
+      <td>1858.68000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>130.08000</td>
+      <td>590.560</td>
+      <td>Critical</td>
+      <td>92.934000</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>21191</td>
+      <td>IN-2014-AS1022527-41797</td>
+      <td>2014-06-07</td>
+      <td>2014-06-09</td>
+      <td>First Class</td>
+      <td>AS-1022527</td>
+      <td>Alan Schoenberger</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Jinan</td>
+      <td>Shandong</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-4530</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Harbour Creations Executive Leather Armchair, Adjustable</td>
+      <td>3298.26000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>1055.25000</td>
+      <td>589.360</td>
+      <td>High</td>
+      <td>164.913000</td>
+      <td>2014-06</td>
+    </tr>
+    <tr>
+      <td>4960</td>
+      <td>MX-2012-ST2053093-41234</td>
+      <td>2012-11-21</td>
+      <td>2012-11-22</td>
+      <td>First Class</td>
+      <td>ST-2053093</td>
+      <td>Shui Tom</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Chinandega</td>
+      <td>Chinandega</td>
+      <td>Nicaragua</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>OFF-AP-4497</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Microwave, Black</td>
+      <td>2443.48000</td>
+      <td>13</td>
+      <td>0.000</td>
+      <td>121.94000</td>
+      <td>589.293</td>
+      <td>Medium</td>
+      <td>122.174000</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>49085</td>
+      <td>CG-2014-BW106533-41727</td>
+      <td>2014-03-29</td>
+      <td>2014-03-31</td>
+      <td>Second Class</td>
+      <td>BW-106533</td>
+      <td>Barry Weirich</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Kananga</td>
+      <td>Kasai-Occidental</td>
+      <td>Democratic Republic of the Congo</td>
+      <td>Central Africa</td>
+      <td>Africa</td>
+      <td>FUR-CH-4530</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Harbour Creations Executive Leather Armchair, Adjustable</td>
+      <td>3808.80000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>1523.52000</td>
+      <td>588.130</td>
+      <td>High</td>
+      <td>190.440000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>21209</td>
+      <td>IN-2015-LA1678059-42242</td>
+      <td>2015-08-26</td>
+      <td>2015-08-27</td>
+      <td>First Class</td>
+      <td>LA-1678059</td>
+      <td>Laura Armstrong</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Palembang</td>
+      <td>Sumatera Selatan</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3422</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Bevis Conference Table, with Bottom Storage</td>
+      <td>3427.14960</td>
+      <td>7</td>
+      <td>0.470</td>
+      <td>-452.81040</td>
+      <td>586.570</td>
+      <td>High</td>
+      <td>171.357480</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>12161</td>
+      <td>ES-2013-AB10150139-41537</td>
+      <td>2013-09-20</td>
+      <td>2013-09-22</td>
+      <td>Second Class</td>
+      <td>AB-10150139</td>
+      <td>Aimee Bixby</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>London</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5355</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, Full Size</td>
+      <td>3441.69000</td>
+      <td>6</td>
+      <td>0.100</td>
+      <td>38.07000</td>
+      <td>585.250</td>
+      <td>High</td>
+      <td>172.084500</td>
+      <td>2013-09</td>
+    </tr>
+    <tr>
+      <td>25438</td>
+      <td>IN-2015-JH158207-42140</td>
+      <td>2015-05-16</td>
+      <td>2015-05-18</td>
+      <td>Second Class</td>
+      <td>JH-158207</td>
+      <td>John Huston</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Melbourne</td>
+      <td>Victoria</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3147</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Smart Phone, Cordless</td>
+      <td>2863.35000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>858.90000</td>
+      <td>581.880</td>
+      <td>Critical</td>
+      <td>143.167500</td>
+      <td>2015-05</td>
+    </tr>
+    <tr>
+      <td>33130</td>
+      <td>CA-2015-AS10045140-42218</td>
+      <td>2015-08-02</td>
+      <td>2015-08-08</td>
+      <td>Standard Class</td>
+      <td>AS-100451402</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>78745.0</td>
+      <td>Austin</td>
+      <td>Texas</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>TEC-MA-3329</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Bady BDG101FRU Card Printer</td>
+      <td>1439.98200</td>
+      <td>3</td>
+      <td>0.400</td>
+      <td>-263.99670</td>
+      <td>103.620</td>
+      <td>Medium</td>
+      <td>71.999100</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>16988</td>
+      <td>ES-2014-BE1141048-41967</td>
+      <td>2014-11-24</td>
+      <td>2014-11-25</td>
+      <td>First Class</td>
+      <td>BE-1141048</td>
+      <td>Bobby Elias</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Duisburg</td>
+      <td>North Rhine-Westphalia</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-3599</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Ink, Color</td>
+      <td>1487.40000</td>
+      <td>10</td>
+      <td>0.000</td>
+      <td>728.70000</td>
+      <td>580.980</td>
+      <td>Critical</td>
+      <td>74.370000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>24443</td>
+      <td>IN-2012-SZ2003527-41221</td>
+      <td>2012-11-08</td>
+      <td>2012-11-10</td>
+      <td>Second Class</td>
+      <td>SZ-2003527</td>
+      <td>Sam Zeldin</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Nanchong</td>
+      <td>Sichuan</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-6010</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Sharp Wireless Fax, Digital</td>
+      <td>3200.04000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>1183.95000</td>
+      <td>576.710</td>
+      <td>Medium</td>
+      <td>160.002000</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>30199</td>
+      <td>IN-2012-RM1937558-41209</td>
+      <td>2012-10-27</td>
+      <td>2012-10-27</td>
+      <td>Same Day</td>
+      <td>RM-1937558</td>
+      <td>Raymond Messe</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Naihati</td>
+      <td>West Bengal</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5380</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Novimex Executive Leather Armchair, Red</td>
+      <td>2301.00000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>91.95000</td>
+      <td>573.270</td>
+      <td>Critical</td>
+      <td>115.050000</td>
+      <td>2012-10</td>
+    </tr>
+    <tr>
+      <td>13879</td>
+      <td>ES-2015-HG1484545-42327</td>
+      <td>2015-11-19</td>
+      <td>2015-11-23</td>
+      <td>Standard Class</td>
+      <td>HG-1484545</td>
+      <td>Harry Greene</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Lille</td>
+      <td>Nord-Pas-de-Calais-Picardie</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-CH-4654</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Hon Executive Leather Armchair, Adjustable</td>
+      <td>5729.34600</td>
+      <td>14</td>
+      <td>0.100</td>
+      <td>63.54600</td>
+      <td>572.950</td>
+      <td>High</td>
+      <td>286.467300</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>50788</td>
+      <td>MO-2015-DP310586-42305</td>
+      <td>2015-10-28</td>
+      <td>2015-10-30</td>
+      <td>Second Class</td>
+      <td>DP-310586</td>
+      <td>Dave Poirier</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Meknes</td>
+      <td>Meknès-Tafilalet</td>
+      <td>Morocco</td>
+      <td>North Africa</td>
+      <td>Africa</td>
+      <td>TEC-CO-3710</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Canon Wireless Fax, Laser</td>
+      <td>5301.24000</td>
+      <td>14</td>
+      <td>0.000</td>
+      <td>2597.28000</td>
+      <td>568.450</td>
+      <td>Medium</td>
+      <td>265.062000</td>
+      <td>2015-10</td>
+    </tr>
+    <tr>
+      <td>40834</td>
+      <td>CA-2014-AS10045140-41908</td>
+      <td>2014-09-26</td>
+      <td>2014-09-28</td>
+      <td>First Class</td>
+      <td>AS-100451404</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>94110.0</td>
+      <td>San Francisco</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-BO-3176</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Atlantic Metals Mobile 4-Shelf Bookcases, Custom Colors</td>
+      <td>477.66600</td>
+      <td>2</td>
+      <td>0.150</td>
+      <td>84.29400</td>
+      <td>43.010</td>
+      <td>Critical</td>
+      <td>23.883300</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>40425</td>
+      <td>US-2015-AS10045140-42252</td>
+      <td>2015-09-05</td>
+      <td>2015-09-06</td>
+      <td>First Class</td>
+      <td>AS-100451404</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>97756.0</td>
+      <td>Redmond</td>
+      <td>Oregon</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-BI-3324</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>Avery Trapezoid Extra Heavy Duty 4" Binders</td>
+      <td>88.07400</td>
+      <td>7</td>
+      <td>0.700</td>
+      <td>-58.71600</td>
+      <td>23.880</td>
+      <td>High</td>
+      <td>4.403700</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>18241</td>
+      <td>ES-2014-JB1600048-41668</td>
+      <td>2014-01-29</td>
+      <td>2014-02-05</td>
+      <td>Standard Class</td>
+      <td>JB-1600048</td>
+      <td>Joy Bell-</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Krefeld</td>
+      <td>North Rhine-Westphalia</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>3219.90000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>965.85000</td>
+      <td>564.250</td>
+      <td>Low</td>
+      <td>160.995000</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>23013</td>
+      <td>ID-2013-AM1070559-41535</td>
+      <td>2013-09-18</td>
+      <td>2013-09-21</td>
+      <td>Second Class</td>
+      <td>AM-1070559</td>
+      <td>Anne McFarland</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Bandung</td>
+      <td>Jawa Barat</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4501</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Refrigerator, Black</td>
+      <td>2487.80880</td>
+      <td>6</td>
+      <td>0.170</td>
+      <td>-269.79120</td>
+      <td>562.140</td>
+      <td>Critical</td>
+      <td>124.390440</td>
+      <td>2013-09</td>
+    </tr>
+    <tr>
+      <td>45616</td>
+      <td>MO-2014-AB25586-41966</td>
+      <td>2014-11-23</td>
+      <td>2014-11-23</td>
+      <td>Same Day</td>
+      <td>AB-25586</td>
+      <td>Alejandro Ballentine</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Casablanca</td>
+      <td>Grand Casablanca</td>
+      <td>Morocco</td>
+      <td>North Africa</td>
+      <td>Africa</td>
+      <td>OFF-AP-4745</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, White</td>
+      <td>2266.44000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>113.28000</td>
+      <td>556.450</td>
+      <td>Medium</td>
+      <td>113.322000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>25026</td>
+      <td>IN-2013-RP192707-41438</td>
+      <td>2013-06-13</td>
+      <td>2013-06-13</td>
+      <td>Same Day</td>
+      <td>RP-192707</td>
+      <td>Rachel Payne</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Sydney</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3611</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Wireless Fax, Laser</td>
+      <td>3068.36100</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>1124.90100</td>
+      <td>555.770</td>
+      <td>High</td>
+      <td>153.418050</td>
+      <td>2013-06</td>
+    </tr>
+    <tr>
+      <td>27962</td>
+      <td>IN-2014-BK1126011-41940</td>
+      <td>2014-10-28</td>
+      <td>2014-10-31</td>
+      <td>First Class</td>
+      <td>BK-1126011</td>
+      <td>Berenike Kampe</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Tongi</td>
+      <td>Dhaka</td>
+      <td>Bangladesh</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-4849</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Ikea Classic Bookcase, Mobile</td>
+      <td>3728.43000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>1192.86000</td>
+      <td>553.310</td>
+      <td>Medium</td>
+      <td>186.421500</td>
+      <td>2014-10</td>
+    </tr>
+    <tr>
+      <td>26669</td>
+      <td>IN-2014-JM1525027-41985</td>
+      <td>2014-12-12</td>
+      <td>2014-12-14</td>
+      <td>First Class</td>
+      <td>JM-1525027</td>
+      <td>Janet Martin</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Suzhou</td>
+      <td>Anhui</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3678</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Canon Copy Machine, Color</td>
+      <td>1581.48000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>0.00000</td>
+      <td>550.740</td>
+      <td>High</td>
+      <td>79.074000</td>
+      <td>2014-12</td>
+    </tr>
+    <tr>
+      <td>29600</td>
+      <td>IN-2013-GP1474058-41419</td>
+      <td>2013-05-25</td>
+      <td>2013-05-28</td>
+      <td>Second Class</td>
+      <td>GP-1474058</td>
+      <td>Guy Phonely</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Delhi</td>
+      <td>Delhi</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5356</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, with Caller ID</td>
+      <td>1916.73000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>498.33000</td>
+      <td>548.400</td>
+      <td>Critical</td>
+      <td>95.836500</td>
+      <td>2013-05</td>
+    </tr>
+    <tr>
+      <td>34336</td>
+      <td>CA-2015-AS10045140-42281</td>
+      <td>2015-10-04</td>
+      <td>2015-10-09</td>
+      <td>Standard Class</td>
+      <td>AS-100451404</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>91104.0</td>
+      <td>Pasadena</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-TA-5066</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Sheffield Collection Coffee Table, End Table, Center Table, Corner Table</td>
+      <td>171.28800</td>
+      <td>3</td>
+      <td>0.200</td>
+      <td>-6.42330</td>
+      <td>12.650</td>
+      <td>Medium</td>
+      <td>8.564400</td>
+      <td>2015-10</td>
+    </tr>
+    <tr>
+      <td>19195</td>
+      <td>ES-2014-NZ1856545-41975</td>
+      <td>2014-12-02</td>
+      <td>2014-12-02</td>
+      <td>Same Day</td>
+      <td>NZ-1856545</td>
+      <td>Nick Zandusky</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Paris</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4508</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Stove, White</td>
+      <td>2432.16000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>513.36000</td>
+      <td>546.900</td>
+      <td>Critical</td>
+      <td>121.608000</td>
+      <td>2014-12</td>
+    </tr>
+    <tr>
+      <td>32639</td>
+      <td>CA-2015-AS10045140-42007</td>
+      <td>2015-01-03</td>
+      <td>2015-01-05</td>
+      <td>First Class</td>
+      <td>AS-100451408</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>28540.0</td>
+      <td>Jacksonville</td>
+      <td>North Carolina</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-3308</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>Avery Recycled Flexi-View Covers for Binding Systems</td>
+      <td>28.85400</td>
+      <td>6</td>
+      <td>0.700</td>
+      <td>-21.15960</td>
+      <td>5.350</td>
+      <td>High</td>
+      <td>1.442700</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>26731</td>
+      <td>ID-2014-SC20695102-41667</td>
+      <td>2014-01-28</td>
+      <td>2014-01-30</td>
+      <td>First Class</td>
+      <td>SC-20695102</td>
+      <td>Steve Chapman</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Manila</td>
+      <td>National Capital</td>
+      <td>Philippines</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5443</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Office Star Executive Leather Armchair, Red</td>
+      <td>2465.82000</td>
+      <td>7</td>
+      <td>0.250</td>
+      <td>197.19000</td>
+      <td>546.490</td>
+      <td>High</td>
+      <td>123.291000</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>31278</td>
+      <td>IN-2013-NC186257-41401</td>
+      <td>2013-05-07</td>
+      <td>2013-05-07</td>
+      <td>Same Day</td>
+      <td>NC-186257</td>
+      <td>Noah Childs</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Newcastle</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3422</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Bevis Conference Table, with Bottom Storage</td>
+      <td>1847.52000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>738.96000</td>
+      <td>545.890</td>
+      <td>High</td>
+      <td>92.376000</td>
+      <td>2013-05</td>
+    </tr>
+    <tr>
+      <td>12035</td>
+      <td>ES-2014-NF183858-41970</td>
+      <td>2014-11-27</td>
+      <td>2014-11-29</td>
+      <td>First Class</td>
+      <td>NF-183858</td>
+      <td>Natalie Fritzler</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Graz</td>
+      <td>Styria</td>
+      <td>Austria</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-BO-4849</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Ikea Classic Bookcase, Mobile</td>
+      <td>2899.89000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>927.78000</td>
+      <td>541.590</td>
+      <td>High</td>
+      <td>144.994500</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>29149</td>
+      <td>IN-2013-NZ185657-41606</td>
+      <td>2013-11-28</td>
+      <td>2013-12-02</td>
+      <td>Second Class</td>
+      <td>NZ-185657</td>
+      <td>Nick Zandusky</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Nowra</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-5774</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>SAFCO Executive Leather Armchair, Black</td>
+      <td>2891.70000</td>
+      <td>7</td>
+      <td>0.100</td>
+      <td>96.39000</td>
+      <td>541.570</td>
+      <td>Medium</td>
+      <td>144.585000</td>
+      <td>2013-11</td>
+    </tr>
+    <tr>
+      <td>15896</td>
+      <td>IT-2013-PM1894045-41546</td>
+      <td>2013-09-29</td>
+      <td>2013-09-29</td>
+      <td>Same Day</td>
+      <td>PM-1894045</td>
+      <td>Paul MacIntyre</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Boulogne-Billancourt</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-MA-5572</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Panasonic Printer, Red</td>
+      <td>2016.84600</td>
+      <td>9</td>
+      <td>0.150</td>
+      <td>-0.05400</td>
+      <td>540.770</td>
+      <td>Critical</td>
+      <td>100.842300</td>
+      <td>2013-09</td>
+    </tr>
+    <tr>
+      <td>18307</td>
+      <td>ES-2014-MZ1733545-41885</td>
+      <td>2014-09-03</td>
+      <td>2014-09-05</td>
+      <td>Second Class</td>
+      <td>MZ-1733545</td>
+      <td>Maria Zettner</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Malakoff</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4503</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Refrigerator, Silver</td>
+      <td>3155.54400</td>
+      <td>7</td>
+      <td>0.100</td>
+      <td>34.94400</td>
+      <td>539.940</td>
+      <td>High</td>
+      <td>157.777200</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>46257</td>
+      <td>CG-2014-HM498033-41846</td>
+      <td>2014-07-26</td>
+      <td>2014-08-01</td>
+      <td>Standard Class</td>
+      <td>HM-498033</td>
+      <td>Henry MacAllister</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Kinshasa</td>
+      <td>Kinshasa</td>
+      <td>Democratic Republic of the Congo</td>
+      <td>Central Africa</td>
+      <td>Africa</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>3856.14000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>1465.20000</td>
+      <td>533.990</td>
+      <td>Low</td>
+      <td>192.807000</td>
+      <td>2014-07</td>
+    </tr>
+    <tr>
+      <td>21142</td>
+      <td>IN-2015-RW195407-42327</td>
+      <td>2015-11-19</td>
+      <td>2015-11-25</td>
+      <td>Standard Class</td>
+      <td>RW-195407</td>
+      <td>Rick Wilson</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Perth</td>
+      <td>Western Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3806</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, Full Size</td>
+      <td>3524.47200</td>
+      <td>6</td>
+      <td>0.100</td>
+      <td>861.37200</td>
+      <td>531.280</td>
+      <td>Low</td>
+      <td>176.223600</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>10308</td>
+      <td>ES-2013-LH1715545-41444</td>
+      <td>2013-06-19</td>
+      <td>2013-06-19</td>
+      <td>Same Day</td>
+      <td>LH-1715545</td>
+      <td>Logan Haushalter</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Le Bouscat</td>
+      <td>Aquitaine-Limousin-Poitou-Charentes</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5840</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Full Size</td>
+      <td>2167.29600</td>
+      <td>4</td>
+      <td>0.150</td>
+      <td>790.41600</td>
+      <td>531.090</td>
+      <td>High</td>
+      <td>108.364800</td>
+      <td>2013-06</td>
+    </tr>
+    <tr>
+      <td>6776</td>
+      <td>MX-2013-FH1436582-41558</td>
+      <td>2013-10-11</td>
+      <td>2013-10-14</td>
+      <td>First Class</td>
+      <td>FH-1436582</td>
+      <td>Fred Hopkins</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Puebla</td>
+      <td>Puebla</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>TEC-PH-5839</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Cordless</td>
+      <td>2556.00000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>178.92000</td>
+      <td>530.486</td>
+      <td>Medium</td>
+      <td>127.800000</td>
+      <td>2013-10</td>
+    </tr>
+    <tr>
+      <td>16948</td>
+      <td>ES-2012-KM1666048-41129</td>
+      <td>2012-08-08</td>
+      <td>2012-08-10</td>
+      <td>First Class</td>
+      <td>KM-1666048</td>
+      <td>Khloe Miller</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Augsburg</td>
+      <td>Bavaria</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-5999</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Sharp Fax Machine, High-Speed</td>
+      <td>1469.25000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>308.40000</td>
+      <td>527.870</td>
+      <td>Critical</td>
+      <td>73.462500</td>
+      <td>2012-08</td>
+    </tr>
+    <tr>
+      <td>11611</td>
+      <td>ES-2012-PO1886545-41217</td>
+      <td>2012-11-04</td>
+      <td>2012-11-08</td>
+      <td>Second Class</td>
+      <td>PO-1886545</td>
+      <td>Patrick O'Donnell</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Nice</td>
+      <td>Provence-Alpes-Côte d'Azur</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3807</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, with Caller ID</td>
+      <td>4448.83200</td>
+      <td>8</td>
+      <td>0.150</td>
+      <td>1517.71200</td>
+      <td>527.850</td>
+      <td>High</td>
+      <td>222.441600</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>35876</td>
+      <td>US-2012-AS10045140-41116</td>
+      <td>2012-07-26</td>
+      <td>2012-08-01</td>
+      <td>Standard Class</td>
+      <td>AS-100451406</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>10035.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6512</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Xerox 1956</td>
+      <td>65.78000</td>
+      <td>11</td>
+      <td>0.000</td>
+      <td>32.23220</td>
+      <td>4.360</td>
+      <td>Medium</td>
+      <td>3.289000</td>
+      <td>2012-07</td>
+    </tr>
+    <tr>
+      <td>1873</td>
+      <td>MX-2014-AB1006028-41755</td>
+      <td>2014-04-26</td>
+      <td>2014-04-28</td>
+      <td>First Class</td>
+      <td>AB-1006028</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Medellín</td>
+      <td>Antioquia</td>
+      <td>Colombia</td>
+      <td>South America</td>
+      <td>LATAM</td>
+      <td>FUR-BO-3891</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Dania Classic Bookcase, Pine</td>
+      <td>2472.66000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>914.76000</td>
+      <td>523.466</td>
+      <td>High</td>
+      <td>123.633000</td>
+      <td>2014-04</td>
+    </tr>
+    <tr>
+      <td>29120</td>
+      <td>IN-2014-DB130607-41999</td>
+      <td>2014-12-26</td>
+      <td>2014-12-26</td>
+      <td>Same Day</td>
+      <td>DB-130607</td>
+      <td>Dave Brooks</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Gold Coast</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-3575</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Refrigerator, Red</td>
+      <td>3739.17600</td>
+      <td>8</td>
+      <td>0.100</td>
+      <td>747.81600</td>
+      <td>522.790</td>
+      <td>High</td>
+      <td>186.958800</td>
+      <td>2014-12</td>
+    </tr>
+    <tr>
+      <td>11743</td>
+      <td>IT-2014-VM2168591-41711</td>
+      <td>2014-03-13</td>
+      <td>2014-03-13</td>
+      <td>Same Day</td>
+      <td>VM-2168591</td>
+      <td>Valerie Mitchum</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Bergen op Zoom</td>
+      <td>North Brabant</td>
+      <td>Netherlands</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-CH-5442</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Office Star Executive Leather Armchair, Black</td>
+      <td>2570.86500</td>
+      <td>11</td>
+      <td>0.500</td>
+      <td>-2211.16500</td>
+      <td>520.890</td>
+      <td>High</td>
+      <td>128.543250</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>32648</td>
+      <td>CA-2014-AS10045140-41727</td>
+      <td>2014-03-29</td>
+      <td>2014-04-01</td>
+      <td>First Class</td>
+      <td>AS-100451408</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>22204.0</td>
+      <td>Arlington</td>
+      <td>Virginia</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>OFF-ST-4516</td>
+      <td>Office Supplies</td>
+      <td>Storage</td>
+      <td>Hanging Personal Folder File</td>
+      <td>31.40000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>7.85000</td>
+      <td>3.810</td>
+      <td>Medium</td>
+      <td>1.570000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>17522</td>
+      <td>ES-2013-DM1352548-41369</td>
+      <td>2013-04-05</td>
+      <td>2013-04-05</td>
+      <td>Same Day</td>
+      <td>DM-1352548</td>
+      <td>Don Miller</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Hanover</td>
+      <td>Lower Saxony</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3149</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Smart Phone, with Caller ID</td>
+      <td>2875.77000</td>
+      <td>9</td>
+      <td>0.500</td>
+      <td>-1783.08000</td>
+      <td>516.630</td>
+      <td>High</td>
+      <td>143.788500</td>
+      <td>2013-04</td>
+    </tr>
+    <tr>
+      <td>14721</td>
+      <td>ES-2013-NM18520120-41634</td>
+      <td>2013-12-26</td>
+      <td>2013-12-28</td>
+      <td>Second Class</td>
+      <td>NM-18520120</td>
+      <td>Neoma Murray</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Vigo</td>
+      <td>Galicia</td>
+      <td>Spain</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>FUR-BO-5948</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Sauder Classic Bookcase, Metal</td>
+      <td>1741.80000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>261.24000</td>
+      <td>515.240</td>
+      <td>Critical</td>
+      <td>87.090000</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>29629</td>
+      <td>IN-2014-LC168857-41747</td>
+      <td>2014-04-18</td>
+      <td>2014-04-19</td>
+      <td>First Class</td>
+      <td>LC-168857</td>
+      <td>Lena Creighton</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Sydney</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-6012</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Sharp Wireless Fax, Laser</td>
+      <td>1601.64000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>587.19000</td>
+      <td>511.470</td>
+      <td>Critical</td>
+      <td>80.082000</td>
+      <td>2014-04</td>
+    </tr>
+    <tr>
+      <td>25868</td>
+      <td>IN-2012-RO1978027-41052</td>
+      <td>2012-05-23</td>
+      <td>2012-05-25</td>
+      <td>Second Class</td>
+      <td>RO-1978027</td>
+      <td>Rose O'Brian</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Gaoyou</td>
+      <td>Jiangsu</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4738</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Refrigerator, White</td>
+      <td>3670.80000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>367.08000</td>
+      <td>510.720</td>
+      <td>High</td>
+      <td>183.540000</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>33131</td>
+      <td>CA-2015-AS10045140-42218</td>
+      <td>2015-08-02</td>
+      <td>2015-08-08</td>
+      <td>Standard Class</td>
+      <td>AS-100451402</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>78745.0</td>
+      <td>Austin</td>
+      <td>Texas</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6557</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Xerox 1998</td>
+      <td>36.28800</td>
+      <td>7</td>
+      <td>0.200</td>
+      <td>12.70080</td>
+      <td>1.990</td>
+      <td>Medium</td>
+      <td>1.814400</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>19559</td>
+      <td>ES-2014-EM1406548-41775</td>
+      <td>2014-05-16</td>
+      <td>2014-05-20</td>
+      <td>Second Class</td>
+      <td>EM-1406548</td>
+      <td>Erin Mull</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Bremen</td>
+      <td>Bremen</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-4593</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Hewlett Wireless Fax, Laser</td>
+      <td>1900.95000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>589.20000</td>
+      <td>506.890</td>
+      <td>High</td>
+      <td>95.047500</td>
+      <td>2014-05</td>
+    </tr>
+    <tr>
+      <td>32638</td>
+      <td>CA-2015-AS10045140-42007</td>
+      <td>2015-01-03</td>
+      <td>2015-01-05</td>
+      <td>First Class</td>
+      <td>AS-100451408</td>
+      <td>Aaron Smayling</td>
+      <td>Corporate</td>
+      <td>28540.0</td>
+      <td>Jacksonville</td>
+      <td>North Carolina</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-3185</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>Avery 3 1/2" Diskette Storage Pages, 10/Pack</td>
+      <td>15.66000</td>
+      <td>5</td>
+      <td>0.700</td>
+      <td>-12.52800</td>
+      <td>1.560</td>
+      <td>High</td>
+      <td>0.783000</td>
+      <td>2015-01</td>
+    </tr>
+    <tr>
+      <td>14070</td>
+      <td>IT-2012-ON1871545-40955</td>
+      <td>2012-02-16</td>
+      <td>2012-02-19</td>
+      <td>Second Class</td>
+      <td>ON-1871545</td>
+      <td>Odella Nelson</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Muret</td>
+      <td>Languedoc-Roussillon-Midi-Pyrénées</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-CH-5774</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>SAFCO Executive Leather Armchair, Black</td>
+      <td>4544.10000</td>
+      <td>11</td>
+      <td>0.100</td>
+      <td>1868.13000</td>
+      <td>506.270</td>
+      <td>Medium</td>
+      <td>227.205000</td>
+      <td>2012-02</td>
+    </tr>
+    <tr>
+      <td>21306</td>
+      <td>IN-2014-VS2182027-41790</td>
+      <td>2014-05-31</td>
+      <td>2014-06-02</td>
+      <td>First Class</td>
+      <td>VS-2182027</td>
+      <td>Vivek Sundaresam</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Zigong</td>
+      <td>Sichuan</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-3639</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Bush Library with Doors, Metal</td>
+      <td>1455.12000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>116.40000</td>
+      <td>504.560</td>
+      <td>Critical</td>
+      <td>72.756000</td>
+      <td>2014-05</td>
+    </tr>
+    <tr>
+      <td>21668</td>
+      <td>IN-2014-CM121157-41913</td>
+      <td>2014-10-01</td>
+      <td>2014-10-02</td>
+      <td>First Class</td>
+      <td>CM-121157</td>
+      <td>Chad McGuire</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Adelaide</td>
+      <td>South Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-4790</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>HP Wireless Fax, Digital</td>
+      <td>1943.19000</td>
+      <td>6</td>
+      <td>0.100</td>
+      <td>258.93000</td>
+      <td>499.620</td>
+      <td>High</td>
+      <td>97.159500</td>
+      <td>2014-10</td>
+    </tr>
+    <tr>
+      <td>39465</td>
+      <td>CA-2015-AB10060140-42315</td>
+      <td>2015-11-07</td>
+      <td>2015-11-14</td>
+      <td>Standard Class</td>
+      <td>AB-100601404</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>98105.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-TA-4622</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Hon 5100 Series Wood Tables</td>
+      <td>2036.86000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>366.63480</td>
+      <td>524.760</td>
+      <td>Low</td>
+      <td>101.843000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>31650</td>
+      <td>CA-2014-AB10060140-41884</td>
+      <td>2014-09-02</td>
+      <td>2014-09-04</td>
+      <td>First Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>10009.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-4340</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>GBC DocuBind P400 Electric Binding System</td>
+      <td>4355.16800</td>
+      <td>4</td>
+      <td>0.200</td>
+      <td>1415.42960</td>
+      <td>82.670</td>
+      <td>Critical</td>
+      <td>217.758400</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>24260</td>
+      <td>ID-2014-JK153257-41984</td>
+      <td>2014-12-11</td>
+      <td>2014-12-14</td>
+      <td>Second Class</td>
+      <td>JK-153257</td>
+      <td>Jason Klamczynski</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Adelaide</td>
+      <td>South Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3709</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Canon Wireless Fax, High-Speed</td>
+      <td>1695.87000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>-37.83000</td>
+      <td>498.620</td>
+      <td>Critical</td>
+      <td>84.793500</td>
+      <td>2014-12</td>
+    </tr>
+    <tr>
+      <td>13646</td>
+      <td>IT-2015-RP1927045-42081</td>
+      <td>2015-03-18</td>
+      <td>2015-03-21</td>
+      <td>Second Class</td>
+      <td>RP-1927045</td>
+      <td>Rachel Payne</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Chelles</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-5998</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Sharp Fax Machine, Digital</td>
+      <td>1505.97900</td>
+      <td>6</td>
+      <td>0.150</td>
+      <td>-265.76100</td>
+      <td>498.520</td>
+      <td>Critical</td>
+      <td>75.298950</td>
+      <td>2015-03</td>
+    </tr>
+    <tr>
+      <td>23708</td>
+      <td>IN-2015-DW1354078-42357</td>
+      <td>2015-12-19</td>
+      <td>2015-12-20</td>
+      <td>First Class</td>
+      <td>DW-1354078</td>
+      <td>Don Weiss</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Kuantan</td>
+      <td>Pahang</td>
+      <td>Malaysia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3806</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, Full Size</td>
+      <td>1954.17000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>312.66000</td>
+      <td>498.380</td>
+      <td>Critical</td>
+      <td>97.708500</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>39466</td>
+      <td>CA-2015-AB10060140-42315</td>
+      <td>2015-11-07</td>
+      <td>2015-11-14</td>
+      <td>Standard Class</td>
+      <td>AB-100601404</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>98105.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>FUR-CH-4613</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs</td>
+      <td>449.56800</td>
+      <td>2</td>
+      <td>0.200</td>
+      <td>-73.05480</td>
+      <td>47.810</td>
+      <td>Low</td>
+      <td>22.478400</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>33661</td>
+      <td>US-2014-AB10060140-41712</td>
+      <td>2014-03-14</td>
+      <td>2014-03-19</td>
+      <td>Standard Class</td>
+      <td>AB-100601408</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>22980.0</td>
+      <td>Waynesboro</td>
+      <td>Virginia</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>OFF-AP-4221</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Eureka The Boss Lite 10-Amp Upright Vacuum, Blue</td>
+      <td>160.32000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>44.88960</td>
+      <td>13.750</td>
+      <td>Medium</td>
+      <td>8.016000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>39467</td>
+      <td>CA-2015-AB10060140-42315</td>
+      <td>2015-11-07</td>
+      <td>2015-11-14</td>
+      <td>Standard Class</td>
+      <td>AB-100601404</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>98105.0</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>TEC-AC-5858</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>SanDisk Cruzer 64 GB USB Flash Drive</td>
+      <td>108.96000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>32.68800</td>
+      <td>11.570</td>
+      <td>Low</td>
+      <td>5.448000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>1779</td>
+      <td>MX-2015-GM1444037-42265</td>
+      <td>2015-09-18</td>
+      <td>2015-09-18</td>
+      <td>Same Day</td>
+      <td>GM-1444037</td>
+      <td>Gary McGarr</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Quito</td>
+      <td>Pichincha</td>
+      <td>Ecuador</td>
+      <td>South America</td>
+      <td>LATAM</td>
+      <td>TEC-CO-3587</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Copy Machine, Color</td>
+      <td>1213.18876</td>
+      <td>7</td>
+      <td>0.002</td>
+      <td>508.00876</td>
+      <td>493.409</td>
+      <td>Critical</td>
+      <td>60.659438</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>23880</td>
+      <td>IN-2014-SV2081558-41968</td>
+      <td>2014-11-25</td>
+      <td>2014-11-27</td>
+      <td>First Class</td>
+      <td>SV-2081558</td>
+      <td>Stuart Van</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Vadodara</td>
+      <td>Gujarat</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-4577</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Hewlett Fax Machine, High-Speed</td>
+      <td>1590.60000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>572.55000</td>
+      <td>493.200</td>
+      <td>Critical</td>
+      <td>79.530000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>27094</td>
+      <td>IN-2014-MM1792027-41950</td>
+      <td>2014-11-07</td>
+      <td>2014-11-10</td>
+      <td>First Class</td>
+      <td>MM-1792027</td>
+      <td>Michael Moore</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Sanya</td>
+      <td>Hainan</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-AC-3405</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Belkin Router, USB</td>
+      <td>2330.64000</td>
+      <td>9</td>
+      <td>0.000</td>
+      <td>1025.46000</td>
+      <td>492.790</td>
+      <td>Critical</td>
+      <td>116.532000</td>
+      <td>2014-11</td>
+    </tr>
+    <tr>
+      <td>24424</td>
+      <td>IN-2015-JK1612059-42204</td>
+      <td>2015-07-19</td>
+      <td>2015-07-23</td>
+      <td>Standard Class</td>
+      <td>JK-1612059</td>
+      <td>Julie Kriz</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Palembang</td>
+      <td>Sumatera Selatan</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5761</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Classic Bookcase, Mobile</td>
+      <td>3278.58480</td>
+      <td>8</td>
+      <td>0.070</td>
+      <td>140.82480</td>
+      <td>492.280</td>
+      <td>High</td>
+      <td>163.929240</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>22049</td>
+      <td>ID-2013-EM14200130-41502</td>
+      <td>2013-08-16</td>
+      <td>2013-08-16</td>
+      <td>Same Day</td>
+      <td>EM-14200130</td>
+      <td>Evan Minnotte</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Bangkok</td>
+      <td>Bangkok</td>
+      <td>Thailand</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>3741.52380</td>
+      <td>7</td>
+      <td>0.170</td>
+      <td>946.63380</td>
+      <td>491.910</td>
+      <td>High</td>
+      <td>187.076190</td>
+      <td>2013-08</td>
+    </tr>
+    <tr>
+      <td>40796</td>
+      <td>CA-2015-AB10060140-42314</td>
+      <td>2015-11-06</td>
+      <td>2015-11-08</td>
+      <td>First Class</td>
+      <td>AB-100601402</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>46142.0</td>
+      <td>Greenwood</td>
+      <td>Indiana</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6214</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Strathmore Photo Mount Cards</td>
+      <td>67.80000</td>
+      <td>10</td>
+      <td>0.000</td>
+      <td>31.18800</td>
+      <td>7.970</td>
+      <td>High</td>
+      <td>3.390000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>23815</td>
+      <td>IN-2013-PM1894059-41284</td>
+      <td>2013-01-10</td>
+      <td>2013-01-14</td>
+      <td>Standard Class</td>
+      <td>PM-1894059</td>
+      <td>Paul MacIntyre</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Tasikmalaya</td>
+      <td>Jawa Barat</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5787</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Library with Doors, Pine</td>
+      <td>3637.60200</td>
+      <td>10</td>
+      <td>0.070</td>
+      <td>156.40200</td>
+      <td>487.860</td>
+      <td>High</td>
+      <td>181.880100</td>
+      <td>2013-01</td>
+    </tr>
+    <tr>
+      <td>8009</td>
+      <td>MX-2014-AT1043582-41667</td>
+      <td>2014-01-28</td>
+      <td>2014-01-30</td>
+      <td>First Class</td>
+      <td>AT-1043582</td>
+      <td>Alyssa Tate</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Guaymas</td>
+      <td>Sonora</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>OFF-AP-4736</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Refrigerator, Red</td>
+      <td>2455.88000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>785.82000</td>
+      <td>487.476</td>
+      <td>Medium</td>
+      <td>122.794000</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>30267</td>
+      <td>ID-2013-AB1001527-41439</td>
+      <td>2013-06-14</td>
+      <td>2013-06-17</td>
+      <td>First Class</td>
+      <td>AB-1001527</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Wuhan</td>
+      <td>Hubei</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-MA-6150</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>StarTech Printer, Wireless</td>
+      <td>1024.68000</td>
+      <td>8</td>
+      <td>0.500</td>
+      <td>-286.92000</td>
+      <td>487.320</td>
+      <td>Critical</td>
+      <td>51.234000</td>
+      <td>2013-06</td>
+    </tr>
+    <tr>
+      <td>40795</td>
+      <td>CA-2015-AB10060140-42314</td>
+      <td>2015-11-06</td>
+      <td>2015-11-08</td>
+      <td>First Class</td>
+      <td>AB-100601402</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>46142.0</td>
+      <td>Greenwood</td>
+      <td>Indiana</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>OFF-FA-6129</td>
+      <td>Office Supplies</td>
+      <td>Fasteners</td>
+      <td>Staples</td>
+      <td>167.94000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>82.29060</td>
+      <td>6.610</td>
+      <td>High</td>
+      <td>8.397000</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>31647</td>
+      <td>CA-2014-AB10060140-41884</td>
+      <td>2014-09-02</td>
+      <td>2014-09-04</td>
+      <td>First Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>10009.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6430</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Xerox 1881</td>
+      <td>24.56000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>11.54320</td>
+      <td>6.530</td>
+      <td>Critical</td>
+      <td>1.228000</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>2283</td>
+      <td>MX-2013-PV1898518-41614</td>
+      <td>2013-12-06</td>
+      <td>2013-12-08</td>
+      <td>First Class</td>
+      <td>PV-1898518</td>
+      <td>Paul Van Hugh</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Salto</td>
+      <td>São Paulo</td>
+      <td>Brazil</td>
+      <td>South America</td>
+      <td>LATAM</td>
+      <td>TEC-AC-5223</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Memorex Router, Bluetooth</td>
+      <td>2297.96000</td>
+      <td>14</td>
+      <td>0.000</td>
+      <td>988.12000</td>
+      <td>483.257</td>
+      <td>High</td>
+      <td>114.898000</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>17765</td>
+      <td>IT-2014-SB2029064-41887</td>
+      <td>2014-09-05</td>
+      <td>2014-09-07</td>
+      <td>Second Class</td>
+      <td>SB-2029064</td>
+      <td>Sean Braxton</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Treviso</td>
+      <td>Veneto</td>
+      <td>Italy</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-4590</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Hewlett Wireless Fax, Color</td>
+      <td>2671.41000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>534.24000</td>
+      <td>483.040</td>
+      <td>High</td>
+      <td>133.570500</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>47783</td>
+      <td>SO-2015-SM10005116-42265</td>
+      <td>2015-09-18</td>
+      <td>2015-09-20</td>
+      <td>First Class</td>
+      <td>SM-10005116</td>
+      <td>Sally Matthias</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Hargeysa</td>
+      <td>Woqooyi Galbeed</td>
+      <td>Somalia</td>
+      <td>Eastern Africa</td>
+      <td>Africa</td>
+      <td>TEC-PH-5839</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Cordless</td>
+      <td>3834.00000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>268.38000</td>
+      <td>481.040</td>
+      <td>High</td>
+      <td>191.700000</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>31649</td>
+      <td>CA-2014-AB10060140-41884</td>
+      <td>2014-09-02</td>
+      <td>2014-09-04</td>
+      <td>First Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>10009.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6430</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Xerox 1881</td>
+      <td>49.12000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>23.08640</td>
+      <td>6.220</td>
+      <td>Critical</td>
+      <td>2.456000</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>23175</td>
+      <td>IN-2013-KH1633059-41489</td>
+      <td>2013-08-03</td>
+      <td>2013-08-08</td>
+      <td>Standard Class</td>
+      <td>KH-1633059</td>
+      <td>Katharine Harms</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Yogyakarta</td>
+      <td>Yogyakarta</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4960</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>KitchenAid Refrigerator, Black</td>
+      <td>3501.73680</td>
+      <td>8</td>
+      <td>0.170</td>
+      <td>210.85680</td>
+      <td>479.960</td>
+      <td>High</td>
+      <td>175.086840</td>
+      <td>2013-08</td>
+    </tr>
+    <tr>
+      <td>27693</td>
+      <td>IN-2015-MP181757-42347</td>
+      <td>2015-12-09</td>
+      <td>2015-12-11</td>
+      <td>First Class</td>
+      <td>MP-181757</td>
+      <td>Mike Pelletier</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Perth</td>
+      <td>Western Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3149</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Smart Phone, with Caller ID</td>
+      <td>1725.46200</td>
+      <td>3</td>
+      <td>0.100</td>
+      <td>747.61200</td>
+      <td>479.940</td>
+      <td>High</td>
+      <td>86.273100</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>22134</td>
+      <td>IN-2013-LH1702027-41572</td>
+      <td>2013-10-25</td>
+      <td>2013-10-28</td>
+      <td>First Class</td>
+      <td>LH-1702027</td>
+      <td>Lisa Hazard</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Anshan</td>
+      <td>Liaoning</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-CO-3597</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>Brother Fax Machine, High-Speed</td>
+      <td>1583.70000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>174.15000</td>
+      <td>479.670</td>
+      <td>Critical</td>
+      <td>79.185000</td>
+      <td>2013-10</td>
+    </tr>
+    <tr>
+      <td>36297</td>
+      <td>CA-2015-AB10060140-42132</td>
+      <td>2015-05-08</td>
+      <td>2015-05-13</td>
+      <td>Standard Class</td>
+      <td>AB-100601404</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>90004.0</td>
+      <td>Los Angeles</td>
+      <td>California</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>TEC-AC-5109</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Logitech G600 MMO Gaming Mouse</td>
+      <td>79.99000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>28.79640</td>
+      <td>5.440</td>
+      <td>Medium</td>
+      <td>3.999500</td>
+      <td>2015-05</td>
+    </tr>
+    <tr>
+      <td>22488</td>
+      <td>ID-2014-CR126257-41878</td>
+      <td>2014-08-27</td>
+      <td>2014-08-29</td>
+      <td>Second Class</td>
+      <td>CR-126257</td>
+      <td>Corey Roper</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Brisbane</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5763</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Classic Bookcase, Traditional</td>
+      <td>2760.34500</td>
+      <td>7</td>
+      <td>0.100</td>
+      <td>-214.72500</td>
+      <td>475.340</td>
+      <td>High</td>
+      <td>138.017250</td>
+      <td>2014-08</td>
+    </tr>
+    <tr>
+      <td>25678</td>
+      <td>IN-2012-NC1862511-41041</td>
+      <td>2012-05-12</td>
+      <td>2012-05-16</td>
+      <td>Standard Class</td>
+      <td>NC-1862511</td>
+      <td>Noah Childs</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Dhaka</td>
+      <td>Dhaka</td>
+      <td>Bangladesh</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-AC-3403</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Belkin Router, Erganomic</td>
+      <td>3078.72000</td>
+      <td>12</td>
+      <td>0.000</td>
+      <td>523.08000</td>
+      <td>474.440</td>
+      <td>High</td>
+      <td>153.936000</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>15376</td>
+      <td>IT-2012-GM1468091-41215</td>
+      <td>2012-11-02</td>
+      <td>2012-11-05</td>
+      <td>First Class</td>
+      <td>GM-1468091</td>
+      <td>Greg Matthias</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Amsterdam</td>
+      <td>North Holland</td>
+      <td>Netherlands</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4745</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, White</td>
+      <td>1983.13500</td>
+      <td>7</td>
+      <td>0.500</td>
+      <td>-1784.89500</td>
+      <td>473.270</td>
+      <td>High</td>
+      <td>99.156750</td>
+      <td>2012-11</td>
+    </tr>
+    <tr>
+      <td>15162</td>
+      <td>ES-2015-RA1994545-42218</td>
+      <td>2015-08-02</td>
+      <td>2015-08-03</td>
+      <td>First Class</td>
+      <td>RA-1994545</td>
+      <td>Ryan Akin</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Le Petit-Quevilly</td>
+      <td>Normandy</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-BO-3624</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Bush Classic Bookcase, Metal</td>
+      <td>1112.77800</td>
+      <td>3</td>
+      <td>0.100</td>
+      <td>296.65800</td>
+      <td>472.000</td>
+      <td>Critical</td>
+      <td>55.638900</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>18899</td>
+      <td>ES-2012-DB1306048-41171</td>
+      <td>2012-09-19</td>
+      <td>2012-09-21</td>
+      <td>Second Class</td>
+      <td>DB-1306048</td>
+      <td>Dave Brooks</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Bochum</td>
+      <td>North Rhine-Westphalia</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-CO-4789</td>
+      <td>Technology</td>
+      <td>Copiers</td>
+      <td>HP Wireless Fax, Color</td>
+      <td>3616.50000</td>
+      <td>10</td>
+      <td>0.000</td>
+      <td>36.00000</td>
+      <td>471.920</td>
+      <td>Critical</td>
+      <td>180.825000</td>
+      <td>2012-09</td>
+    </tr>
+    <tr>
+      <td>33660</td>
+      <td>US-2014-AB10060140-41712</td>
+      <td>2014-03-14</td>
+      <td>2014-03-19</td>
+      <td>Standard Class</td>
+      <td>AB-100601408</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>22980.0</td>
+      <td>Waynesboro</td>
+      <td>Virginia</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>FUR-FU-4762</td>
+      <td>Furniture</td>
+      <td>Furnishings</td>
+      <td>Howard Miller 14-1/2" Diameter Chrome Round Wall Clock</td>
+      <td>127.88000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>40.92160</td>
+      <td>3.150</td>
+      <td>Medium</td>
+      <td>6.394000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>24160</td>
+      <td>IN-2014-RF197357-41709</td>
+      <td>2014-03-11</td>
+      <td>2014-03-15</td>
+      <td>Standard Class</td>
+      <td>RF-197357</td>
+      <td>Roland Fjeld</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Perth</td>
+      <td>Western Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5268</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Motorola Smart Phone, Full Size</td>
+      <td>2892.10500</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>160.60500</td>
+      <td>470.290</td>
+      <td>High</td>
+      <td>144.605250</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>15812</td>
+      <td>ES-2013-JH1582048-41306</td>
+      <td>2013-02-01</td>
+      <td>2013-02-04</td>
+      <td>First Class</td>
+      <td>JH-1582048</td>
+      <td>John Huston</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Hamburg</td>
+      <td>Hamburg</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3806</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, Full Size</td>
+      <td>3263.40000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>848.40000</td>
+      <td>469.290</td>
+      <td>High</td>
+      <td>163.170000</td>
+      <td>2013-02</td>
+    </tr>
+    <tr>
+      <td>33662</td>
+      <td>US-2014-AB10060140-41712</td>
+      <td>2014-03-14</td>
+      <td>2014-03-19</td>
+      <td>Standard Class</td>
+      <td>AB-100601408</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>22980.0</td>
+      <td>Waynesboro</td>
+      <td>Virginia</td>
+      <td>United States</td>
+      <td>Southern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-4819</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>Ibico Covers for Plastic or Wire Binding Elements</td>
+      <td>46.00000</td>
+      <td>4</td>
+      <td>0.000</td>
+      <td>20.70000</td>
+      <td>2.720</td>
+      <td>Medium</td>
+      <td>2.300000</td>
+      <td>2014-03</td>
+    </tr>
+    <tr>
+      <td>6449</td>
+      <td>MX-2015-DM1295551-42103</td>
+      <td>2015-04-09</td>
+      <td>2015-04-13</td>
+      <td>Standard Class</td>
+      <td>DM-1295551</td>
+      <td>Dario Medina</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Mixco</td>
+      <td>Guatemala</td>
+      <td>Guatemala</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>FUR-TA-5064</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Round Table, Rectangular</td>
+      <td>3117.08800</td>
+      <td>13</td>
+      <td>0.200</td>
+      <td>38.94800</td>
+      <td>466.703</td>
+      <td>High</td>
+      <td>155.854400</td>
+      <td>2015-04</td>
+    </tr>
+    <tr>
+      <td>32472</td>
+      <td>CA-2014-AB10060140-41881</td>
+      <td>2014-08-30</td>
+      <td>2014-09-04</td>
+      <td>Standard Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>3301.0</td>
+      <td>Concord</td>
+      <td>New Hampshire</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-SU-2972</td>
+      <td>Office Supplies</td>
+      <td>Supplies</td>
+      <td>Acme Forged Steel Scissors with Black Enamel Handles</td>
+      <td>27.93000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>8.09970</td>
+      <td>2.160</td>
+      <td>Medium</td>
+      <td>1.396500</td>
+      <td>2014-08</td>
+    </tr>
+    <tr>
+      <td>4394</td>
+      <td>MX-2015-BE1133582-42082</td>
+      <td>2015-03-19</td>
+      <td>2015-03-21</td>
+      <td>First Class</td>
+      <td>BE-1133582</td>
+      <td>Bill Eplett</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Morelia</td>
+      <td>Michoacán</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>OFF-AP-4745</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, White</td>
+      <td>1888.70000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>887.60000</td>
+      <td>465.918</td>
+      <td>High</td>
+      <td>94.435000</td>
+      <td>2015-03</td>
+    </tr>
+    <tr>
+      <td>22058</td>
+      <td>IN-2014-SO2033527-41914</td>
+      <td>2014-10-02</td>
+      <td>2014-10-04</td>
+      <td>First Class</td>
+      <td>SO-2033527</td>
+      <td>Sean O'Donnell</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Changchun</td>
+      <td>Jilin</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4502</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Refrigerator, Red</td>
+      <td>3000.78000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>1080.18000</td>
+      <td>465.630</td>
+      <td>High</td>
+      <td>150.039000</td>
+      <td>2014-10</td>
+    </tr>
+    <tr>
+      <td>19833</td>
+      <td>ES-2014-DK12835120-41651</td>
+      <td>2014-01-12</td>
+      <td>2014-01-15</td>
+      <td>First Class</td>
+      <td>DK-12835120</td>
+      <td>Damala Kotsonis</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Madrid</td>
+      <td>Madrid</td>
+      <td>Spain</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4507</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Stove, Silver</td>
+      <td>3801.63000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>1444.59000</td>
+      <td>465.020</td>
+      <td>Medium</td>
+      <td>190.081500</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>45807</td>
+      <td>SA-2015-LC7050110-42236</td>
+      <td>2015-08-20</td>
+      <td>2015-08-25</td>
+      <td>Standard Class</td>
+      <td>LC-7050110</td>
+      <td>Liz Carlisle</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Jeddah</td>
+      <td>Makkah</td>
+      <td>Saudi Arabia</td>
+      <td>Western Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-3806</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, Full Size</td>
+      <td>5211.12000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>1146.24000</td>
+      <td>463.980</td>
+      <td>Medium</td>
+      <td>260.556000</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>30187</td>
+      <td>IN-2012-PB19210127-41259</td>
+      <td>2012-12-16</td>
+      <td>2012-12-19</td>
+      <td>First Class</td>
+      <td>PB-19210127</td>
+      <td>Phillip Breyer</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Taipei</td>
+      <td>Taipei City</td>
+      <td>Taiwan</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-5065</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Round Table, with Bottom Storage</td>
+      <td>1356.03000</td>
+      <td>3</td>
+      <td>0.000</td>
+      <td>311.85000</td>
+      <td>458.970</td>
+      <td>Critical</td>
+      <td>67.801500</td>
+      <td>2012-12</td>
+    </tr>
+    <tr>
+      <td>29484</td>
+      <td>IN-2015-CG125207-42077</td>
+      <td>2015-03-14</td>
+      <td>2015-03-18</td>
+      <td>Standard Class</td>
+      <td>CG-125207</td>
+      <td>Claire Gute</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Adelaide</td>
+      <td>South Australia</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4745</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Stove, White</td>
+      <td>3569.64300</td>
+      <td>7</td>
+      <td>0.100</td>
+      <td>674.16300</td>
+      <td>458.540</td>
+      <td>High</td>
+      <td>178.482150</td>
+      <td>2015-03</td>
+    </tr>
+    <tr>
+      <td>36347</td>
+      <td>CA-2013-AB10060140-41535</td>
+      <td>2013-09-18</td>
+      <td>2013-09-24</td>
+      <td>Standard Class</td>
+      <td>AB-100601404</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>98198.0</td>
+      <td>Des Moines</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6420</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Wirebound Message Books, Four 2 3/4" x 5" Forms per Page, 600 Sets per Book</td>
+      <td>18.54000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>8.71380</td>
+      <td>1.690</td>
+      <td>Medium</td>
+      <td>0.927000</td>
+      <td>2013-09</td>
+    </tr>
+    <tr>
+      <td>24015</td>
+      <td>ID-2015-HG1502559-42194</td>
+      <td>2015-07-09</td>
+      <td>2015-07-13</td>
+      <td>Standard Class</td>
+      <td>HG-1502559</td>
+      <td>Hunter Glantz</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Medan</td>
+      <td>Sumatera Utara</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-5787</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Safco Library with Doors, Pine</td>
+      <td>2910.08160</td>
+      <td>8</td>
+      <td>0.070</td>
+      <td>125.12160</td>
+      <td>456.320</td>
+      <td>High</td>
+      <td>145.504080</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>20601</td>
+      <td>ID-2014-AD1018059-41801</td>
+      <td>2014-06-11</td>
+      <td>2014-06-15</td>
+      <td>Standard Class</td>
+      <td>AD-1018059</td>
+      <td>Alan Dominguez</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Jakarta</td>
+      <td>Jakarta</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-4532</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Harbour Creations Executive Leather Armchair, Red</td>
+      <td>3126.40020</td>
+      <td>9</td>
+      <td>0.270</td>
+      <td>-128.71980</td>
+      <td>455.710</td>
+      <td>High</td>
+      <td>156.320010</td>
+      <td>2014-06</td>
+    </tr>
+    <tr>
+      <td>12051</td>
+      <td>ES-2012-BP11155139-41130</td>
+      <td>2012-08-09</td>
+      <td>2012-08-16</td>
+      <td>Standard Class</td>
+      <td>BP-11155139</td>
+      <td>Becky Pak</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>London</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3805</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Cisco Smart Phone, Cordless</td>
+      <td>5276.98800</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>1758.88800</td>
+      <td>454.810</td>
+      <td>Medium</td>
+      <td>263.849400</td>
+      <td>2012-08</td>
+    </tr>
+    <tr>
+      <td>25915</td>
+      <td>ID-2015-AA10480130-42080</td>
+      <td>2015-03-17</td>
+      <td>2015-03-21</td>
+      <td>Standard Class</td>
+      <td>AA-10480130</td>
+      <td>Andrew Allen</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Bangkok</td>
+      <td>Bangkok</td>
+      <td>Thailand</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5840</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Full Size</td>
+      <td>2645.37600</td>
+      <td>5</td>
+      <td>0.170</td>
+      <td>-0.02400</td>
+      <td>452.600</td>
+      <td>High</td>
+      <td>132.268800</td>
+      <td>2015-03</td>
+    </tr>
+    <tr>
+      <td>21639</td>
+      <td>ID-2014-RL196157-41641</td>
+      <td>2014-01-02</td>
+      <td>2014-01-03</td>
+      <td>First Class</td>
+      <td>RL-196157</td>
+      <td>Rob Lucas</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Newcastle</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-BO-3639</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Bush Library with Doors, Metal</td>
+      <td>1637.01000</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>-36.39000</td>
+      <td>452.280</td>
+      <td>Medium</td>
+      <td>81.850500</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>31648</td>
+      <td>CA-2014-AB10060140-41884</td>
+      <td>2014-09-02</td>
+      <td>2014-09-04</td>
+      <td>First Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>10009.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-BI-2911</td>
+      <td>Office Supplies</td>
+      <td>Binders</td>
+      <td>Acco Hanging Data Binders</td>
+      <td>3.04800</td>
+      <td>1</td>
+      <td>0.200</td>
+      <td>1.06680</td>
+      <td>1.670</td>
+      <td>Critical</td>
+      <td>0.152400</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>23229</td>
+      <td>ID-2013-SW2024559-41557</td>
+      <td>2013-10-10</td>
+      <td>2013-10-11</td>
+      <td>First Class</td>
+      <td>SW-2024559</td>
+      <td>Scot Wooten</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Surakarta</td>
+      <td>Jawa Tengah</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>TEC-PH-5840</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Samsung Smart Phone, Full Size</td>
+      <td>2645.37600</td>
+      <td>5</td>
+      <td>0.170</td>
+      <td>-0.02400</td>
+      <td>451.030</td>
+      <td>High</td>
+      <td>132.268800</td>
+      <td>2013-10</td>
+    </tr>
+    <tr>
+      <td>31646</td>
+      <td>CA-2014-AB10060140-41884</td>
+      <td>2014-09-02</td>
+      <td>2014-09-04</td>
+      <td>First Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>10009.0</td>
+      <td>New York City</td>
+      <td>New York</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>TEC-AC-5744</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Sabrent 4-Port USB 2.0 Hub</td>
+      <td>6.79000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>2.30860</td>
+      <td>1.310</td>
+      <td>Critical</td>
+      <td>0.339500</td>
+      <td>2014-09</td>
+    </tr>
+    <tr>
+      <td>20674</td>
+      <td>IN-2012-BW1111027-41076</td>
+      <td>2012-06-16</td>
+      <td>2012-06-18</td>
+      <td>First Class</td>
+      <td>BW-1111027</td>
+      <td>Bart Watters</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Beijing</td>
+      <td>Beijing</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-3420</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Bevis Conference Table, Fully Assembled</td>
+      <td>3238.30500</td>
+      <td>5</td>
+      <td>0.300</td>
+      <td>-740.29500</td>
+      <td>449.180</td>
+      <td>High</td>
+      <td>161.915250</td>
+      <td>2012-06</td>
+    </tr>
+    <tr>
+      <td>11331</td>
+      <td>ES-2015-YC21895139-42097</td>
+      <td>2015-04-03</td>
+      <td>2015-04-05</td>
+      <td>First Class</td>
+      <td>YC-21895139</td>
+      <td>Yoseph Carroll</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>London</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>FUR-BO-3639</td>
+      <td>Furniture</td>
+      <td>Bookcases</td>
+      <td>Bush Library with Doors, Metal</td>
+      <td>2291.81400</td>
+      <td>7</td>
+      <td>0.100</td>
+      <td>127.13400</td>
+      <td>448.910</td>
+      <td>High</td>
+      <td>114.590700</td>
+      <td>2015-04</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>MX-2012-JM1558082-41045</td>
+      <td>2012-05-16</td>
+      <td>2012-05-19</td>
+      <td>Second Class</td>
+      <td>JM-1558082</td>
+      <td>Jill Matthias</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Tulancingo</td>
+      <td>Hidalgo</td>
+      <td>Mexico</td>
+      <td>Central America</td>
+      <td>LATAM</td>
+      <td>TEC-PH-5355</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, Full Size</td>
+      <td>2124.50000</td>
+      <td>5</td>
+      <td>0.000</td>
+      <td>488.60000</td>
+      <td>447.657</td>
+      <td>High</td>
+      <td>106.225000</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>45091</td>
+      <td>BO-2015-MZ733513-42046</td>
+      <td>2015-02-11</td>
+      <td>2015-02-15</td>
+      <td>Second Class</td>
+      <td>MZ-733513</td>
+      <td>Maria Zettner</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Brest</td>
+      <td>Brest</td>
+      <td>Belarus</td>
+      <td>Eastern Europe</td>
+      <td>Europe</td>
+      <td>FUR-CH-4654</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Hon Executive Leather Armchair, Adjustable</td>
+      <td>2757.78000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>744.48000</td>
+      <td>446.330</td>
+      <td>High</td>
+      <td>137.889000</td>
+      <td>2015-02</td>
+    </tr>
+    <tr>
+      <td>18990</td>
+      <td>ES-2014-JF15295120-41924</td>
+      <td>2014-10-12</td>
+      <td>2014-10-12</td>
+      <td>Same Day</td>
+      <td>JF-15295120</td>
+      <td>Jason Fortune-</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Valencia</td>
+      <td>Valenciana</td>
+      <td>Spain</td>
+      <td>Southern Europe</td>
+      <td>Europe</td>
+      <td>TEC-AC-4185</td>
+      <td>Technology</td>
+      <td>Accessories</td>
+      <td>Enermax Router, Bluetooth</td>
+      <td>1549.98000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>139.32000</td>
+      <td>443.920</td>
+      <td>Critical</td>
+      <td>77.499000</td>
+      <td>2014-10</td>
+    </tr>
+    <tr>
+      <td>34330</td>
+      <td>CA-2015-AB10060140-42264</td>
+      <td>2015-09-17</td>
+      <td>2015-09-22</td>
+      <td>Standard Class</td>
+      <td>AB-100601406</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>19143.0</td>
+      <td>Philadelphia</td>
+      <td>Pennsylvania</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>OFF-PA-6596</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Xerox 231</td>
+      <td>20.73600</td>
+      <td>4</td>
+      <td>0.200</td>
+      <td>7.25760</td>
+      <td>1.230</td>
+      <td>High</td>
+      <td>1.036800</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>51130</td>
+      <td>UP-2015-DJ3510137-42202</td>
+      <td>2015-07-17</td>
+      <td>2015-07-19</td>
+      <td>Second Class</td>
+      <td>DJ-3510137</td>
+      <td>Don Jones</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Zhytomyr</td>
+      <td>Zhytomyr</td>
+      <td>Ukraine</td>
+      <td>Eastern Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-4738</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hoover Refrigerator, White</td>
+      <td>3146.40000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>629.28000</td>
+      <td>443.550</td>
+      <td>Critical</td>
+      <td>157.320000</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>14405</td>
+      <td>ES-2015-MF1825045-42330</td>
+      <td>2015-11-22</td>
+      <td>2015-11-28</td>
+      <td>Standard Class</td>
+      <td>MF-1825045</td>
+      <td>Monica Federle</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Argenteuil</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-MA-4205</td>
+      <td>Technology</td>
+      <td>Machines</td>
+      <td>Epson Printer, Durable</td>
+      <td>2456.61900</td>
+      <td>11</td>
+      <td>0.150</td>
+      <td>664.71900</td>
+      <td>442.490</td>
+      <td>Low</td>
+      <td>122.830950</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>10745</td>
+      <td>IT-2012-TC2129545-41058</td>
+      <td>2012-05-29</td>
+      <td>2012-06-01</td>
+      <td>First Class</td>
+      <td>TC-2129545</td>
+      <td>Toby Carlisle</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Talence</td>
+      <td>Aquitaine-Limousin-Poitou-Charentes</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>FUR-TA-4642</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Hon Computer Table, Adjustable Height</td>
+      <td>2228.63550</td>
+      <td>7</td>
+      <td>0.350</td>
+      <td>-754.41450</td>
+      <td>440.250</td>
+      <td>Critical</td>
+      <td>111.431775</td>
+      <td>2012-05</td>
+    </tr>
+    <tr>
+      <td>40794</td>
+      <td>CA-2015-AB10060140-42314</td>
+      <td>2015-11-06</td>
+      <td>2015-11-08</td>
+      <td>First Class</td>
+      <td>AB-100601402</td>
+      <td>Adam Bellavance</td>
+      <td>Home Office</td>
+      <td>46142.0</td>
+      <td>Greenwood</td>
+      <td>Indiana</td>
+      <td>United States</td>
+      <td>Central US</td>
+      <td>USCA</td>
+      <td>OFF-PA-3114</td>
+      <td>Office Supplies</td>
+      <td>Paper</td>
+      <td>Ampad Gold Fibre Wirebound Steno Books, 6" x 9", Gregg Ruled</td>
+      <td>4.41000</td>
+      <td>1</td>
+      <td>0.000</td>
+      <td>2.02860</td>
+      <td>1.210</td>
+      <td>High</td>
+      <td>0.220500</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>25850</td>
+      <td>IN-2015-CP1234058-42202</td>
+      <td>2015-07-17</td>
+      <td>2015-07-20</td>
+      <td>First Class</td>
+      <td>CP-1234058</td>
+      <td>Christine Phan</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Aurangabad</td>
+      <td>Bihar</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4502</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Hamilton Beach Refrigerator, Red</td>
+      <td>4001.04000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>1440.24000</td>
+      <td>439.650</td>
+      <td>Medium</td>
+      <td>200.052000</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>16109</td>
+      <td>ES-2015-EH1412545-42245</td>
+      <td>2015-08-29</td>
+      <td>2015-09-03</td>
+      <td>Standard Class</td>
+      <td>EH-1412545</td>
+      <td>Eugene Hildebrand</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Plaisir</td>
+      <td>Ile-de-France</td>
+      <td>France</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-3148</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Apple Smart Phone, Full Size</td>
+      <td>4876.87500</td>
+      <td>9</td>
+      <td>0.150</td>
+      <td>745.87500</td>
+      <td>439.410</td>
+      <td>Medium</td>
+      <td>243.843750</td>
+      <td>2015-08</td>
+    </tr>
+    <tr>
+      <td>22515</td>
+      <td>IN-2013-NC183407-41634</td>
+      <td>2013-12-26</td>
+      <td>2013-12-26</td>
+      <td>Same Day</td>
+      <td>NC-183407</td>
+      <td>Nat Carroll</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Melbourne</td>
+      <td>Victoria</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-5054</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Computer Table, Adjustable Height</td>
+      <td>1788.82200</td>
+      <td>6</td>
+      <td>0.300</td>
+      <td>204.28200</td>
+      <td>439.030</td>
+      <td>Critical</td>
+      <td>89.441100</td>
+      <td>2013-12</td>
+    </tr>
+    <tr>
+      <td>29269</td>
+      <td>IN-2015-BF1100558-42319</td>
+      <td>2015-11-11</td>
+      <td>2015-11-15</td>
+      <td>Standard Class</td>
+      <td>BF-1100558</td>
+      <td>Barry Franz</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Gorakhpur</td>
+      <td>Haryana</td>
+      <td>India</td>
+      <td>Southern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-3577</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Refrigerator, White</td>
+      <td>3622.29000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>1267.77000</td>
+      <td>438.890</td>
+      <td>High</td>
+      <td>181.114500</td>
+      <td>2015-11</td>
+    </tr>
+    <tr>
+      <td>29651</td>
+      <td>ID-2014-JS1603059-41760</td>
+      <td>2014-05-01</td>
+      <td>2014-05-04</td>
+      <td>Second Class</td>
+      <td>JS-1603059</td>
+      <td>Joy Smith</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Medan</td>
+      <td>Sumatera Utara</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-5072</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Lesro Wood Table, Fully Assembled</td>
+      <td>1242.58500</td>
+      <td>5</td>
+      <td>0.470</td>
+      <td>-140.71500</td>
+      <td>437.850</td>
+      <td>Critical</td>
+      <td>62.129250</td>
+      <td>2014-05</td>
+    </tr>
+    <tr>
+      <td>10670</td>
+      <td>ES-2012-AM10360139-41136</td>
+      <td>2012-08-15</td>
+      <td>2012-08-20</td>
+      <td>Standard Class</td>
+      <td>AM-10360139</td>
+      <td>Alice McCarthy</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Harrogate</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>TEC-PH-5354</td>
+      <td>Technology</td>
+      <td>Phones</td>
+      <td>Nokia Smart Phone, Cordless</td>
+      <td>4453.05000</td>
+      <td>7</td>
+      <td>0.000</td>
+      <td>1424.85000</td>
+      <td>433.410</td>
+      <td>Medium</td>
+      <td>222.652500</td>
+      <td>2012-08</td>
+    </tr>
+    <tr>
+      <td>24859</td>
+      <td>IN-2015-JF1519021-42341</td>
+      <td>2015-12-03</td>
+      <td>2015-12-07</td>
+      <td>Standard Class</td>
+      <td>JF-1519021</td>
+      <td>Jamie Frazer</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Phnom Penh</td>
+      <td>Phnom Penh</td>
+      <td>Cambodia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>FUR-TA-4706</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Hon Training Table, Fully Assembled</td>
+      <td>2673.36000</td>
+      <td>8</td>
+      <td>0.000</td>
+      <td>1069.20000</td>
+      <td>432.570</td>
+      <td>High</td>
+      <td>133.668000</td>
+      <td>2015-12</td>
+    </tr>
+    <tr>
+      <td>24466</td>
+      <td>IN-2014-AB100157-41815</td>
+      <td>2014-06-25</td>
+      <td>2014-06-29</td>
+      <td>Standard Class</td>
+      <td>AB-100157</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Mackay</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>FUR-CH-4654</td>
+      <td>Furniture</td>
+      <td>Chairs</td>
+      <td>Hon Executive Leather Armchair, Adjustable</td>
+      <td>2046.19500</td>
+      <td>5</td>
+      <td>0.100</td>
+      <td>591.04500</td>
+      <td>432.150</td>
+      <td>High</td>
+      <td>102.309750</td>
+      <td>2014-06</td>
+    </tr>
+    <tr>
+      <td>15359</td>
+      <td>ES-2014-JG15160139-41660</td>
+      <td>2014-01-21</td>
+      <td>2014-01-24</td>
+      <td>Second Class</td>
+      <td>JG-15160139</td>
+      <td>James Galang</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Stockton-on-Tees</td>
+      <td>England</td>
+      <td>United Kingdom</td>
+      <td>Northern Europe</td>
+      <td>Europe</td>
+      <td>FUR-TA-3344</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Barricks Conference Table, Fully Assembled</td>
+      <td>5451.30000</td>
+      <td>6</td>
+      <td>0.000</td>
+      <td>2071.44000</td>
+      <td>432.130</td>
+      <td>Medium</td>
+      <td>272.565000</td>
+      <td>2014-01</td>
+    </tr>
+    <tr>
+      <td>39745</td>
+      <td>CA-2015-AH10075140-42301</td>
+      <td>2015-10-24</td>
+      <td>2015-10-25</td>
+      <td>First Class</td>
+      <td>AH-100751406</td>
+      <td>Adam Hart</td>
+      <td>Corporate</td>
+      <td>2920.0</td>
+      <td>Cranston</td>
+      <td>Rhode Island</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>FUR-TA-5421</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>Office Impressions End Table, 20-1/2"H x 24"W x 20"D</td>
+      <td>637.89600</td>
+      <td>3</td>
+      <td>0.300</td>
+      <td>-127.57920</td>
+      <td>188.950</td>
+      <td>Critical</td>
+      <td>31.894800</td>
+      <td>2015-10</td>
+    </tr>
+    <tr>
+      <td>21670</td>
+      <td>IN-2015-AG1033059-42197</td>
+      <td>2015-07-12</td>
+      <td>2015-07-14</td>
+      <td>Second Class</td>
+      <td>AG-1033059</td>
+      <td>Alex Grayson</td>
+      <td>Consumer</td>
+      <td></td>
+      <td>Jambi</td>
+      <td>Jambi</td>
+      <td>Indonesia</td>
+      <td>Southeastern Asia</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-3574</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Refrigerator, Black</td>
+      <td>1722.28320</td>
+      <td>4</td>
+      <td>0.170</td>
+      <td>539.44320</td>
+      <td>430.040</td>
+      <td>Critical</td>
+      <td>86.114160</td>
+      <td>2015-07</td>
+    </tr>
+    <tr>
+      <td>39744</td>
+      <td>CA-2015-AH10075140-42301</td>
+      <td>2015-10-24</td>
+      <td>2015-10-25</td>
+      <td>First Class</td>
+      <td>AH-100751406</td>
+      <td>Adam Hart</td>
+      <td>Corporate</td>
+      <td>2920.0</td>
+      <td>Cranston</td>
+      <td>Rhode Island</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>FUR-FU-3936</td>
+      <td>Furniture</td>
+      <td>Furnishings</td>
+      <td>Deflect-o DuraMat Antistatic Studded Beveled Mat for Medium Pile Carpeting</td>
+      <td>210.68000</td>
+      <td>2</td>
+      <td>0.000</td>
+      <td>50.56320</td>
+      <td>79.520</td>
+      <td>Critical</td>
+      <td>10.534000</td>
+      <td>2015-10</td>
+    </tr>
+    <tr>
+      <td>17548</td>
+      <td>ES-2015-NF1847548-42248</td>
+      <td>2015-09-01</td>
+      <td>2015-09-01</td>
+      <td>Same Day</td>
+      <td>NF-1847548</td>
+      <td>Neil Französisch</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Moers</td>
+      <td>North Rhine-Westphalia</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-AP-3581</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>Breville Stove, White</td>
+      <td>1007.42400</td>
+      <td>2</td>
+      <td>0.100</td>
+      <td>134.30400</td>
+      <td>428.830</td>
+      <td>Critical</td>
+      <td>50.371200</td>
+      <td>2015-09</td>
+    </tr>
+    <tr>
+      <td>39742</td>
+      <td>CA-2015-AH10075140-42301</td>
+      <td>2015-10-24</td>
+      <td>2015-10-25</td>
+      <td>First Class</td>
+      <td>AH-100751406</td>
+      <td>Adam Hart</td>
+      <td>Corporate</td>
+      <td>2920.0</td>
+      <td>Cranston</td>
+      <td>Rhode Island</td>
+      <td>United States</td>
+      <td>Eastern US</td>
+      <td>USCA</td>
+      <td>FUR-TA-4943</td>
+      <td>Furniture</td>
+      <td>Tables</td>
+      <td>KI Adjustable-Height Table</td>
+      <td>240.74400</td>
+      <td>4</td>
+      <td>0.300</td>
+      <td>-13.75680</td>
+      <td>68.010</td>
+      <td>Critical</td>
+      <td>12.037200</td>
+      <td>2015-10</td>
+    </tr>
+    <tr>
+      <td>20861</td>
+      <td>IN-2012-DR129407-41066</td>
+      <td>2012-06-06</td>
+      <td>2012-06-10</td>
+      <td>Second Class</td>
+      <td>DR-129407</td>
+      <td>Daniel Raglin</td>
+      <td>Home Office</td>
+      <td></td>
+      <td>Townsville</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+      <td>Asia Pacific</td>
+      <td>OFF-AP-4966</td>
+      <td>Office Supplies</td>
+      <td>Appliances</td>
+      <td>KitchenAid Stove, Silver</td>
+      <td>4624.29000</td>
+      <td>9</td>
+      <td>0.100</td>
+      <td>1644.03000</td>
+      <td>427.460</td>
+      <td>Medium</td>
+      <td>231.214500</td>
+      <td>2012-06</td>
+    </tr>
+    <tr>
+      <td>17907</td>
+      <td>ES-2012-NB1865548-41194</td>
+      <td>2012-10-12</td>
+      <td>2012-10-12</td>
+      <td>Same Day</td>
+      <td>NB-1865548</td>
+      <td>Nona Balk</td>
+      <td>Corporate</td>
+      <td></td>
+      <td>Hamburg</td>
+      <td>Hamburg</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+      <td>Europe</td>
+      <td>OFF-ST-6049</td>
+      <td>Office Supplies</td>
+      <td>Storage</td>
+      <td>Smead Lockers, Wire Frame</td>
+      <td>1066.44600</td>
+      <td>6</td>
+      <td>0.100</td>
+      <td>-11.93400</td>
+      <td>427.240</td>
+      <td>Critical</td>
+      <td>53.322300</td>
+      <td>2012-10</td>
+    </tr>
+  </tbody>
+</table></div>
+</section>
+</main>
+<footer>Generated automatically by the SPRK agentic analysis workflow.</footer>
+<script>
+(function () {
+  var table = document.getElementById('sprk-table');
+  if (!table) return;
+  var tbody = table.tBodies[0];
+  var rows = Array.prototype.slice.call(tbody.rows);
+  var search = document.getElementById('sprk-search');
+  var count = document.getElementById('sprk-count');
+  function updateCount() {
+    var shown = rows.filter(function (r) { return r.style.display !== 'none'; }).length;
+    count.textContent = shown + ' of ' + rows.length + ' rows';
+  }
+  search.addEventListener('input', function () {
+    var q = search.value.toLowerCase();
+    rows.forEach(function (r) { r.style.display = r.textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none'; });
+    updateCount();
+  });
+  var headers = table.tHead.rows[0].cells;
+  Array.prototype.forEach.call(headers, function (th, idx) {
+    th.title = 'Click to sort';
+    th.addEventListener('click', function () {
+      var asc = !th.classList.contains('asc');
+      Array.prototype.forEach.call(headers, function (h) { h.classList.remove('asc', 'desc'); });
+      th.classList.add(asc ? 'asc' : 'desc');
+      rows.sort(function (a, b) {
+        var x = a.cells[idx].textContent.trim(), y = b.cells[idx].textContent.trim();
+        var nx = parseFloat(x.replace(/,/g, '')), ny = parseFloat(y.replace(/,/g, ''));
+        var cmp = (!isNaN(nx) && !isNaN(ny)) ? nx - ny : x.localeCompare(y);
+        return asc ? cmp : -cmp;
+      });
+      rows.forEach(function (r) { tbody.appendChild(r); });
+    });
+  });
+  updateCount();
+})();
+</script>
+</body>
+</html>
