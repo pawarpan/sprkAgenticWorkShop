@@ -1,0 +1,244 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Superstore 2016 Orders Analysis</title><script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f5f7fb;color:#1f2937}header{background:#102542;color:#fff;padding:20px 28px}
+h1{margin:0 0 4px;font-size:24px}main{max-width:1200px;margin:auto;padding:20px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px}.kpi span{color:#6b7280;font-size:13px}.kpi b{display:block;font-size:24px;margin-top:4px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+h3{margin:0 0 6px}label{font-size:13px;color:#6b7280}select{padding:6px;margin:6px 0 4px;border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #eee;padding:6px;text-align:left}th{background:#eef2ff}</style></head>
+<body><header><h1>Global Superstore 2016 Orders Analysis</h1><div>Analysis of 51,292 orders from the Global Superstore dataset.</div></header><main>
+<div class="kpis"><div class="card kpi"><span>Total Orders</span><b>51,292</b></div><div class="card kpi"><span>Total Sales</span><b>$12,649,676.73</b></div><div class="card kpi"><span>Total Profit</span><b>$1,473,754.57</b></div><div class="card kpi"><span>Unique Customers</span><b>17,415</b></div><div class="card kpi"><span>Countries</span><b>165</b></div></div><div class="grid"><div class="card"><h3>Sales by Category (filter by Region)</h3><label>Filter by Region: </label><select id="f0"></select><div id="c0" style="height:380px"></div></div><div class="card"><h3>Order Count by Country (filter by Segment)</h3><label>Filter by Segment: </label><select id="f1"></select><div id="c1" style="height:380px"></div></div></div>
+<div class="card" style="margin-top:16px"><h3>Key insights</h3><ol><li>Top country by sales: United States ($2,297,300.86)</li><li>Most common segment: Consumer (26,519 orders)</li><li>Highest profit product: Canon imageCLASS 2200 Advanced Copier ($25,199.93)</li><li>Average discount: 14.29%</li><li>Most used ship mode: Standard Class (30,776 orders)</li></ol></div>
+<div class="card" style="margin-top:16px"><h3>Data preview</h3><div style="overflow:auto"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Row ID</th>
+      <th>Order ID</th>
+      <th>Order Date</th>
+      <th>Ship Date</th>
+      <th>Ship Mode</th>
+      <th>Customer ID</th>
+      <th>Customer Name</th>
+      <th>Segment</th>
+      <th>Postal Code</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>40098</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>73120</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+    </tr>
+    <tr>
+      <td>26341</td>
+      <td>IN-2014-JR162107-41675</td>
+      <td>2014-02-05</td>
+      <td>2014-02-07</td>
+      <td>Second Class</td>
+      <td>JR-162107</td>
+      <td>Justin Ritter</td>
+      <td>Corporate</td>
+      <td>-1</td>
+      <td>Wollongong</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <td>25330</td>
+      <td>IN-2014-CR127307-41929</td>
+      <td>2014-10-17</td>
+      <td>2014-10-18</td>
+      <td>First Class</td>
+      <td>CR-127307</td>
+      <td>Craig Reiter</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Brisbane</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <td>13524</td>
+      <td>ES-2014-KM1637548-41667</td>
+      <td>2014-01-28</td>
+      <td>2014-01-30</td>
+      <td>First Class</td>
+      <td>KM-1637548</td>
+      <td>Katherine Murray</td>
+      <td>Home Office</td>
+      <td>-1</td>
+      <td>Berlin</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>47221</td>
+      <td>SG-2014-RH9495111-41948</td>
+      <td>2014-11-05</td>
+      <td>2014-11-06</td>
+      <td>Same Day</td>
+      <td>RH-9495111</td>
+      <td>Rick Hansen</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Dakar</td>
+      <td>Dakar</td>
+      <td>Senegal</td>
+    </tr>
+    <tr>
+      <td>22732</td>
+      <td>IN-2014-JM156557-41818</td>
+      <td>2014-06-28</td>
+      <td>2014-07-01</td>
+      <td>Second Class</td>
+      <td>JM-156557</td>
+      <td>Jim Mitchum</td>
+      <td>Corporate</td>
+      <td>-1</td>
+      <td>Sydney</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+    </tr>
+    <tr>
+      <td>30570</td>
+      <td>IN-2012-TS2134092-41219</td>
+      <td>2012-11-06</td>
+      <td>2012-11-08</td>
+      <td>First Class</td>
+      <td>TS-2134092</td>
+      <td>Toby Swindell</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Porirua</td>
+      <td>Wellington</td>
+      <td>New Zealand</td>
+    </tr>
+    <tr>
+      <td>31192</td>
+      <td>IN-2013-MB1808592-41378</td>
+      <td>2013-04-14</td>
+      <td>2013-04-18</td>
+      <td>Standard Class</td>
+      <td>MB-1808592</td>
+      <td>Mick Brown</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Hamilton</td>
+      <td>Waikato</td>
+      <td>New Zealand</td>
+    </tr>
+    <tr>
+      <td>40099</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>73120</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+    </tr>
+    <tr>
+      <td>36258</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>98103</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+    </tr>
+    <tr>
+      <td>36259</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>98103</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+    </tr>
+    <tr>
+      <td>28879</td>
+      <td>ID-2013-AJ107801-41383</td>
+      <td>2013-04-19</td>
+      <td>2013-04-22</td>
+      <td>First Class</td>
+      <td>AJ-107801</td>
+      <td>Anthony Jacobs</td>
+      <td>Corporate</td>
+      <td>-1</td>
+      <td>Kabul</td>
+      <td>Kabul</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <td>45794</td>
+      <td>SA-2012-MM7260110-41269</td>
+      <td>2012-12-26</td>
+      <td>2012-12-28</td>
+      <td>Second Class</td>
+      <td>MM-7260110</td>
+      <td>Magdelene Morse</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Jizan</td>
+      <td>Jizan</td>
+      <td>Saudi Arabia</td>
+    </tr>
+    <tr>
+      <td>4132</td>
+      <td>MX-2013-VF2171518-41591</td>
+      <td>2013-11-13</td>
+      <td>2013-11-13</td>
+      <td>Same Day</td>
+      <td>VF-2171518</td>
+      <td>Vicky Freymann</td>
+      <td>Home Office</td>
+      <td>-1</td>
+      <td>Toledo</td>
+      <td>Parana</td>
+      <td>Brazil</td>
+    </tr>
+    <tr>
+      <td>27704</td>
+      <td>IN-2014-PF1912027-41796</td>
+      <td>2014-06-06</td>
+      <td>2014-06-08</td>
+      <td>Second Class</td>
+      <td>PF-1912027</td>
+      <td>Peter Fuller</td>
+      <td>Consumer</td>
+      <td>-1</td>
+      <td>Mudanjiang</td>
+      <td>Heilongjiang</td>
+      <td>China</td>
+    </tr>
+  </tbody>
+</table></div></div></main>
+<script>const R=[{"title":"Sales by Category (filter by Region)","filter":"Region","xlabel":"Category","ylabel":"sum of Sales","series":{"All":[["Technology","Furniture","Office Supplies"],[4748657.5,4110451.9,3790567.33]],"Western Europe":[["Technology","Office Supplies","Furniture"],[656637.14,601443.65,473848.88]],"Central America":[["Technology","Furniture","Office Supplies"],[461670.28,441987.37,319504.36]],"Oceania":[["Furniture","Technology","Office Supplies"],[410468.0,410002.98,281713.63]],"Western US":[["Furniture","Technology","Office Supplies"],[252434.47,251991.83,221031.52]],"Southeastern Asia":[["Technology","Furniture","Office Supplies"],[329751.38,313386.7,241285.08]],"South America":[["Furniture","Technology","Office Supplies"],[251610.85,210710.49,154915.78]],"Eastern US":[["Technology","Furniture","Office Supplies"],[264973.98,208202.05,205605.21]],"Southern Asia":[["Technology","Furniture","Office Supplies"],[351806.6,314363.26,200402.82]],"Western Asia":[["Technology","Office Supplies","Furniture"],[124312.24,109013.56,83781.17]],"Eastern Asia":[["Furniture","Technology","Office Supplies"],[336384.59,315390.77,203284.04]],"Central US":[["Technology","Office Supplies","Furniture"],[170516.31,167131.0,163692.58]],"Northern Europe":[["Technology","Office Supplies","Furniture"],[252969.09,216127.54,167682.52]],"Southern Europe":[["Office Supplies","Technology","Furniture"],[242436.79,215703.93,150453.25]],"Caribbean":[["Furniture","Technology","Office Supplies"],[118372.4,117333.05,89575.42]],"Southern US":[["Technology","Office Supplies","Furniture"],[148771.91,125701.59,117248.41]],"Eastern Europe":[["Technology","Office Supplies","Furniture"],[108258.93,103652.61,98121.9]],"Western Africa":[["Technology","Office Supplies","Furniture"],[79476.06,55796.61,39606.14]],"North Africa":[["Technology","Office Supplies","Furniture"],[86698.89,85540.41,60977.31]],"Eastern Africa":[["Office Supplies","Technology","Furniture"],[51277.47,44182.6,32395.95]],"Central Africa":[["Technology","Office Supplies","Furniture"],[61689.99,45345.18,36594.84]]}},
+{"title":"Order Count by Country (filter by Segment)","filter":"Segment","xlabel":"Country","ylabel":"Count of rows","series":{"All":[["United States","Australia","France","Mexico","Germany","China","United Kingdom","Brazil","India","Indonesia","Turkey","Italy","Nigeria","Spain","Dominican Republic"],[9994.0,2837.0,2827.0,2635.0,2063.0,1880.0,1633.0,1594.0,1554.0,1390.0,1378.0,1100.0,905.0,859.0,742.0]],"Consumer":[["United States","Australia","France","Mexico","Germany","China","Brazil","India","United Kingdom","Indonesia","Turkey","Italy","Nigeria","Spain","El Salvador"],[5191.0,1513.0,1455.0,1371.0,1104.0,927.0,833.0,816.0,816.0,715.0,673.0,556.0,478.0,436.0,403.0]],"Corporate":[["United States","France","Australia","Mexico","Germany","China","United Kingdom","Brazil","Indonesia","Turkey","India","Italy","Nigeria","Spain","Cuba"],[3020.0,884.0,847.0,814.0,603.0,586.0,515.0,459.0,448.0,438.0,430.0,362.0,273.0,269.0,238.0]],"Home Office":[["United States","France","Australia","Mexico","China","Germany","India","United Kingdom","Brazil","Turkey","Indonesia","Dominican Republic","Italy","Honduras","Nigeria"],[1783.0,488.0,477.0,450.0,367.0,356.0,308.0,302.0,302.0,267.0,227.0,186.0,182.0,158.0,154.0]]}}];R.forEach((r,i)=>{const s=document.getElementById('f'+i);Object.keys(r.series).forEach(k=>s.add(new Option(k,k)));const draw=()=>{const d=r.series[s.value];Plotly.react('c'+i,[{type:'bar',x:d[0],y:d[1],marker:{color:'#1A8FD0'}}],{margin:{t:10,l:60,r:10,b:90},yaxis:{title:{text:r.ylabel}},xaxis:{title:{text:r.xlabel}}},{responsive:true,displaylogo:false})};s.onchange=draw;draw()});</script>
+</body></html>
