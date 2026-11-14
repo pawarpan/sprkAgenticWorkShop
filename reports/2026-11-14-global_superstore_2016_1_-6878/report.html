@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Global Superstore 2016 Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f9fa; }
+.container { max-width: 1200px; margin: 30px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+h1 { font-size: 2.2em; margin-bottom: 0.2em; }
+h2 { font-size: 1.2em; color: #555; margin-top: 0; }
+.kpis { display: flex; gap: 30px; margin: 30px 0; }
+.kpi { background: #f1f3f6; padding: 18px 30px; border-radius: 8px; font-size: 1.2em; flex: 1; text-align: center; }
+.charts { display: flex; gap: 30px; }
+.chart-block { flex: 1; background: #f9fafb; padding: 18px 18px 10px 18px; border-radius: 8px; }
+.insights { margin: 30px 0 10px 0; }
+.insights ul { margin: 0; padding-left: 20px; }
+.preview-table { border-collapse: collapse; width: 100%; margin-top: 18px; }
+.preview-table th, .preview-table td { border: 1px solid #ddd; padding: 6px 10px; font-size: 0.97em; }
+.preview-table th { background: #e9ecef; }
+select { font-size: 1em; margin-bottom: 10px; padding: 4px 8px; }
+@media (max-width: 900px) { .charts { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Global Superstore 2016 Dashboard</h1>
+<h2>Interactive dashboard for sales, profit and orders by category and region.</h2>
+<div class="kpis"><div class="kpi">Total Sales: $12,649,677</div><div class="kpi">Total Profit: $1,473,755</div><div class="kpi">Total Orders: 25,728</div><div class="kpi">Total Customers: 17,415</div><div class="kpi">Avg. Discount: 14.29%</div></div>
+<div class="charts">
+  <div class="chart-block">
+    <label for="bar-filter">Filter by Category:</label>
+    <select id="bar-filter"></select>
+    <div id="bar-chart"></div>
+  </div>
+  <div class="chart-block">
+    <label for="pie-filter">Filter by Segment:</label>
+    <select id="pie-filter"></select>
+    <div id="pie-chart"></div>
+  </div>
+</div>
+<div class="insights">
+  <h3>Key Insights</h3>
+  <ul><li>Total sales: $12,649,677</li><li>Total profit: $1,473,755</li><li>Most profitable region: Western Europe ($220,627)</li><li>Category with highest sales: Technology ($4,748,657)</li><li>Country with most orders: United States (9,994 orders)</li></ul>
+</div>
+<h3>Preview of First 10 Rows</h3>
+<table class="preview-table">
+  <tr><th>Row ID</th><th>Order ID</th><th>Order Date</th><th>Ship Date</th><th>Ship Mode</th><th>Customer ID</th><th>Customer Name</th><th>Segment</th><th>Postal Code</th><th>City</th></tr>
+  <tr><td>40098</td><td>CA-2014-AB10015140-41954</td><td>2014-11-11</td><td>2014-11-13</td><td>First Class</td><td>AB-100151402</td><td>Aaron Bergman</td><td>Consumer</td><td>73120.0</td><td>Oklahoma City</td></tr><tr><td>26341</td><td>IN-2014-JR162107-41675</td><td>2014-02-05</td><td>2014-02-07</td><td>Second Class</td><td>JR-162107</td><td>Justin Ritter</td><td>Corporate</td><td></td><td>Wollongong</td></tr><tr><td>25330</td><td>IN-2014-CR127307-41929</td><td>2014-10-17</td><td>2014-10-18</td><td>First Class</td><td>CR-127307</td><td>Craig Reiter</td><td>Consumer</td><td></td><td>Brisbane</td></tr><tr><td>13524</td><td>ES-2014-KM1637548-41667</td><td>2014-01-28</td><td>2014-01-30</td><td>First Class</td><td>KM-1637548</td><td>Katherine Murray</td><td>Home Office</td><td></td><td>Berlin</td></tr><tr><td>47221</td><td>SG-2014-RH9495111-41948</td><td>2014-11-05</td><td>2014-11-06</td><td>Same Day</td><td>RH-9495111</td><td>Rick Hansen</td><td>Consumer</td><td></td><td>Dakar</td></tr><tr><td>22732</td><td>IN-2014-JM156557-41818</td><td>2014-06-28</td><td>2014-07-01</td><td>Second Class</td><td>JM-156557</td><td>Jim Mitchum</td><td>Corporate</td><td></td><td>Sydney</td></tr><tr><td>30570</td><td>IN-2012-TS2134092-41219</td><td>2012-11-06</td><td>2012-11-08</td><td>First Class</td><td>TS-2134092</td><td>Toby Swindell</td><td>Consumer</td><td></td><td>Porirua</td></tr><tr><td>31192</td><td>IN-2013-MB1808592-41378</td><td>2013-04-14</td><td>2013-04-18</td><td>Standard Class</td><td>MB-1808592</td><td>Mick Brown</td><td>Consumer</td><td></td><td>Hamilton</td></tr><tr><td>40099</td><td>CA-2014-AB10015140-41954</td><td>2014-11-11</td><td>2014-11-13</td><td>First Class</td><td>AB-100151402</td><td>Aaron Bergman</td><td>Consumer</td><td>73120.0</td><td>Oklahoma City</td></tr><tr><td>36258</td><td>CA-2012-AB10015140-40974</td><td>2012-03-06</td><td>2012-03-07</td><td>First Class</td><td>AB-100151404</td><td>Aaron Bergman</td><td>Consumer</td><td>98103.0</td><td>Seattle</td></tr>
+</table>
+<script>
+const chartData = {"bar": {"data": {"All": {"x": ["Phones", "Copiers", "Chairs", "Bookcases", "Storage", "Appliances", "Machines", "Tables", "Accessories", "Binders", "Furnishings", "Art", "Supplies", "Paper", "Envelopes"], "y": [1708924.1392, 1511436.27328, 1501681.7641999999, 1466572.2418, 1127812.9694, 1010535.525, 779060.0671000001, 757041.9244, 749237.0185, 461882.8337, 385155.9679, 373613.1539, 242811.1326, 241848.9074, 169217.4896]}, "Furniture": {"x": ["Chairs", "Bookcases", "Tables", "Furnishings"], "y": [1501681.7641999999, 1466572.2418, 757041.9244, 385155.9679]}, "Office Supplies": {"x": ["Storage", "Appliances", "Binders", "Art", "Supplies", "Paper", "Envelopes", "Fasteners", "Labels"], "y": [1127812.9694, 1010535.525, 461882.8337, 373613.1539, 242811.1326, 241848.9074, 169217.4896, 89495.0459, 73350.276]}, "Technology": {"x": ["Phones", "Copiers", "Machines", "Accessories"], "y": [1708924.1392, 1511436.27328, 779060.0671000001, 749237.0185]}}, "filter_col": "Category", "filter_values": ["All", "Furniture", "Office Supplies", "Technology"]}, "pie": {"data": {"All": {"labels": ["Western Europe", "Central America", "Oceania", "Southeastern Asia", "Southern Asia", "Eastern Asia", "Western US", "Other"], "values": [1731929.6685, 1223162.00816, 1102184.612, 884423.169, 866572.677, 855059.391, 725457.8245, 5260887.379720001]}, "Consumer": {"labels": ["Western Europe", "Central America", "Oceania", "Southeastern Asia", "Southern Asia", "Eastern Asia", "Western US", "Other"], "values": [915067.3635, 637928.27844, 581550.47, 460752.8154, 431073.354, 407538.561, 362880.773, 2717319.1825200003]}, "Corporate": {"labels": ["Western Europe", "Central America", "Oceania", "Eastern Asia", "Southern Asia", "Southeastern Asia", "Western US", "Other"], "values": [521205.8805, 374220.98916, 322826.913, 271682.10599999997, 269287.818, 254351.7078, 225855.2745, 1586266.8325]}, "Home Office": {"labels": ["Western Europe", "Central America", "Oceania", "Eastern Asia", "Southeastern Asia", "Southern Asia", "Western US", "Other"], "values": [295656.4245, 211012.74056, 197807.229, 175838.724, 169318.6458, 166211.505, 136721.777, 957301.3647]}}, "filter_col": "Segment", "filter_values": ["All", "Consumer", "Corporate", "Home Office"]}};
+function fillDropdown(id, values) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = '';
+  values.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v; opt.textContent = v;
+    sel.appendChild(opt);
+  });
+}
+function drawBar(val) {
+  const d = chartData.bar.data[val];
+  Plotly.react('bar-chart', [{
+    x: d.x, y: d.y, type: 'bar', marker: {color: '#0074D9'}
+  }], {margin: {t: 30, l: 60, r: 10, b: 80}, title: 'Top 15 Sub-Categories by Sales', xaxis: {title: 'Sub-Category'}, yaxis: {title: 'Sales', tickprefix: '$'}, height: 400});
+}
+function drawPie(val) {
+  const d = chartData.pie.data[val];
+  Plotly.react('pie-chart', [{
+    labels: d.labels, values: d.values, type: 'pie', textinfo: 'label+percent', hole: 0.3
+  }], {margin: {t: 30, l: 10, r: 10, b: 10}, title: 'Sales Share by Region', height: 400});
+}
+document.addEventListener('DOMContentLoaded', function() {
+  fillDropdown('bar-filter', chartData.bar.filter_values);
+  fillDropdown('pie-filter', chartData.pie.filter_values);
+  drawBar('All');
+  drawPie('All');
+  document.getElementById('bar-filter').addEventListener('change', e => drawBar(e.target.value));
+  document.getElementById('pie-filter').addEventListener('change', e => drawPie(e.target.value));
+});
+</script>
+</div>
+</body>
+</html>
