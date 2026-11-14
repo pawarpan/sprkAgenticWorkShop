@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global Superstore 2016 Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; }
+        .container { max-width: 1200px; margin: 30px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+        h1 { font-size: 2em; margin-bottom: 0.5em; }
+        .kpis { display: flex; gap: 18px; margin-bottom: 24px; }
+        .kpi { background: #f0f4f8; padding: 16px 24px; border-radius: 6px; font-size: 1.1em; flex: 1; text-align: center; }
+        .charts { display: flex; gap: 20px; }
+        .chart { flex: 1; min-width: 0; }
+        .insights { margin: 24px 0 12px 0; }
+        .preview { margin-top: 18px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Global Superstore 2016 Dashboard</h1>
+    <div class="kpis">
+        <div class="kpi">Total Sales<br><b>${total_sales}</b></div>
+        <div class="kpi">Total Profit<br><b>${total_profit}</b></div>
+        <div class="kpi">Orders<br><b>25728</b></div>
+        <div class="kpi">Customers<br><b>17415</b></div>
+        <div class="kpi">Avg Discount<br><b>14.29%</b></div>
+    </div>
+    <div class="charts">
+        <div class="chart">
+            <h3>Sales by Category (filter by Region)</h3>
+            <div id="bar1"></div>
+        </div>
+        <div class="chart">
+            <h3>Profit by Sub-Category (filter by Market)</h3>
+            <div id="bar2"></div>
+        </div>
+    </div>
+    <div class="insights">
+        <h3>Key Insights</h3>
+        <ul>
+            <li>Total sales: $12,649,677</li>
+<li>Total profit: $1,473,755</li>
+<li>Number of unique orders: 25728</li>
+<li>Number of unique customers: 17415</li>
+<li>Average discount: 14.29%</li>
+        </ul>
+    </div>
+    <div class="preview">
+        <h3>Data Preview</h3>
+        <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Row ID</th>
+      <th>Order ID</th>
+      <th>Order Date</th>
+      <th>Ship Date</th>
+      <th>Ship Mode</th>
+      <th>Customer ID</th>
+      <th>Customer Name</th>
+      <th>Segment</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>40098</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+      <td>Central US</td>
+    </tr>
+    <tr>
+      <td>26341</td>
+      <td>IN-2014-JR162107-41675</td>
+      <td>2014-02-05</td>
+      <td>2014-02-07</td>
+      <td>Second Class</td>
+      <td>JR-162107</td>
+      <td>Justin Ritter</td>
+      <td>Corporate</td>
+      <td>Wollongong</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <td>25330</td>
+      <td>IN-2014-CR127307-41929</td>
+      <td>2014-10-17</td>
+      <td>2014-10-18</td>
+      <td>First Class</td>
+      <td>CR-127307</td>
+      <td>Craig Reiter</td>
+      <td>Consumer</td>
+      <td>Brisbane</td>
+      <td>Queensland</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <td>13524</td>
+      <td>ES-2014-KM1637548-41667</td>
+      <td>2014-01-28</td>
+      <td>2014-01-30</td>
+      <td>First Class</td>
+      <td>KM-1637548</td>
+      <td>Katherine Murray</td>
+      <td>Home Office</td>
+      <td>Berlin</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+      <td>Western Europe</td>
+    </tr>
+    <tr>
+      <td>47221</td>
+      <td>SG-2014-RH9495111-41948</td>
+      <td>2014-11-05</td>
+      <td>2014-11-06</td>
+      <td>Same Day</td>
+      <td>RH-9495111</td>
+      <td>Rick Hansen</td>
+      <td>Consumer</td>
+      <td>Dakar</td>
+      <td>Dakar</td>
+      <td>Senegal</td>
+      <td>Western Africa</td>
+    </tr>
+    <tr>
+      <td>22732</td>
+      <td>IN-2014-JM156557-41818</td>
+      <td>2014-06-28</td>
+      <td>2014-07-01</td>
+      <td>Second Class</td>
+      <td>JM-156557</td>
+      <td>Jim Mitchum</td>
+      <td>Corporate</td>
+      <td>Sydney</td>
+      <td>New South Wales</td>
+      <td>Australia</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <td>30570</td>
+      <td>IN-2012-TS2134092-41219</td>
+      <td>2012-11-06</td>
+      <td>2012-11-08</td>
+      <td>First Class</td>
+      <td>TS-2134092</td>
+      <td>Toby Swindell</td>
+      <td>Consumer</td>
+      <td>Porirua</td>
+      <td>Wellington</td>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <td>31192</td>
+      <td>IN-2013-MB1808592-41378</td>
+      <td>2013-04-14</td>
+      <td>2013-04-18</td>
+      <td>Standard Class</td>
+      <td>MB-1808592</td>
+      <td>Mick Brown</td>
+      <td>Consumer</td>
+      <td>Hamilton</td>
+      <td>Waikato</td>
+      <td>New Zealand</td>
+      <td>Oceania</td>
+    </tr>
+    <tr>
+      <td>40099</td>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>2014-11-13</td>
+      <td>First Class</td>
+      <td>AB-100151402</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>Oklahoma City</td>
+      <td>Oklahoma</td>
+      <td>United States</td>
+      <td>Central US</td>
+    </tr>
+    <tr>
+      <td>36258</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+    </tr>
+    <tr>
+      <td>36259</td>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>2012-03-07</td>
+      <td>First Class</td>
+      <td>AB-100151404</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>Seattle</td>
+      <td>Washington</td>
+      <td>United States</td>
+      <td>Western US</td>
+    </tr>
+    <tr>
+      <td>28879</td>
+      <td>ID-2013-AJ107801-41383</td>
+      <td>2013-04-19</td>
+      <td>2013-04-22</td>
+      <td>First Class</td>
+      <td>AJ-107801</td>
+      <td>Anthony Jacobs</td>
+      <td>Corporate</td>
+      <td>Kabul</td>
+      <td>Kabul</td>
+      <td>Afghanistan</td>
+      <td>Southern Asia</td>
+    </tr>
+    <tr>
+      <td>45794</td>
+      <td>SA-2012-MM7260110-41269</td>
+      <td>2012-12-26</td>
+      <td>2012-12-28</td>
+      <td>Second Class</td>
+      <td>MM-7260110</td>
+      <td>Magdelene Morse</td>
+      <td>Consumer</td>
+      <td>Jizan</td>
+      <td>Jizan</td>
+      <td>Saudi Arabia</td>
+      <td>Western Asia</td>
+    </tr>
+    <tr>
+      <td>4132</td>
+      <td>MX-2013-VF2171518-41591</td>
+      <td>2013-11-13</td>
+      <td>2013-11-13</td>
+      <td>Same Day</td>
+      <td>VF-2171518</td>
+      <td>Vicky Freymann</td>
+      <td>Home Office</td>
+      <td>Toledo</td>
+      <td>Parana</td>
+      <td>Brazil</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <td>27704</td>
+      <td>IN-2014-PF1912027-41796</td>
+      <td>2014-06-06</td>
+      <td>2014-06-08</td>
+      <td>Second Class</td>
+      <td>PF-1912027</td>
+      <td>Peter Fuller</td>
+      <td>Consumer</td>
+      <td>Mudanjiang</td>
+      <td>Heilongjiang</td>
+      <td>China</td>
+      <td>Eastern Asia</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+</div>
+<script>
+// Bar 1: Sales by Category, filter by Region
+var bar1_data = [
+    {x: ['Technology', 'Office Supplies', 'Furniture'], y: ['656637.144', '601443.645', '473848.8795'], type: 'bar', name: 'Western Europe'}
+];
+var bar1_layout = {margin: {t: 30, b: 80}, template: 'none', updatemenus: [{
+    buttons: [
+        {label: 'Western Europe', method: 'update', args: [{y: [['656637.144', '601443.645', '473848.8795']], x: [['Technology', 'Office Supplies', 'Furniture']]}]},
+        {label: 'Central America', method: 'update', args: [{y: [['461670.28216', '441987.37', '319504.356']], x: [['Technology', 'Furniture', 'Office Supplies']]}]},
+        {label: 'Oceania', method: 'update', args: [{y: [['410468.004', '410002.982', '281713.626']], x: [['Furniture', 'Technology', 'Office Supplies']]}]},
+        {label: 'Western US', method: 'update', args: [{y: [['252434.4675', '251991.83200000002', '221031.525']], x: [['Furniture', 'Technology', 'Office Supplies']]}]},
+        {label: 'Southeastern Asia', method: 'update', args: [{y: [['329751.384', '313386.7035', '241285.0815']], x: [['Technology', 'Furniture', 'Office Supplies']]}]},
+        {label: 'South America', method: 'update', args: [{y: [['251610.85', '210710.48788', '154915.78']], x: [['Furniture', 'Technology', 'Office Supplies']]}]},
+        {label: 'Eastern US', method: 'update', args: [{y: [['264973.98099999997', '208202.052', '205605.207']], x: [['Technology', 'Furniture', 'Office Supplies']]}]},
+        {label: 'Southern Asia', method: 'update', args: [{y: [['351806.59500000003', '314363.262', '200402.82']], x: [['Technology', 'Furniture', 'Office Supplies']]}]},
+        {label: 'Western Asia', method: 'update', args: [{y: [['124312.239', '109013.556', '83781.16500000001']], x: [['Technology', 'Office Supplies', 'Furniture']]}]},
+        {label: 'Eastern Asia', method: 'update', args: [{y: [['336384.591', '315390.765', '203284.035']], x: [['Furniture', 'Technology', 'Office Supplies']]}]}
+    ],
+    direction: 'down',
+    showactive: true,
+    x: 0.5,
+    xanchor: 'center',
+    y: 1.15,
+    yanchor: 'top'
+}]};
+Plotly.newPlot('bar1', bar1_data, bar1_layout, {displayModeBar: false});
+
+// Bar 2: Profit by Sub-Category, filter by Market
+var bar2_data = [
+    {x: ['Copiers', 'Phones', 'Bookcases', 'Chairs', 'Appliances', 'Machines', 'Storage', 'Accessories', 'Furnishings', 'Binders', 'Paper', 'Art', 'Envelopes', 'Supplies', 'Labels'], y: ['82237.14420000001', '78274.84019999999', '63863.4285', '54740.9052', '38527.08', '23375.321099999994', '18009.831400000003', '16182.757499999998', '14699.802899999999', '11300.7987', '6683.546399999999', '5100.2059', '4906.419599999999', '3936.273599999999', '2367.948'], type: 'bar', name: 'Asia Pacific'}
+];
+var bar2_layout = {margin: {t: 30, b: 120}, template: 'none', updatemenus: [{
+    buttons: [
+        {label: 'Asia Pacific', method: 'update', args: [{y: [['82237.14420000001', '78274.84019999999', '63863.4285', '54740.9052', '38527.08', '23375.321099999994', '18009.831400000003', '16182.757499999998', '14699.802899999999', '11300.7987', '6683.546399999999', '5100.2059', '4906.419599999999', '3936.273599999999', '2367.948']], x: [['Copiers', 'Phones', 'Bookcases', 'Chairs', 'Appliances', 'Machines', 'Storage', 'Accessories', 'Furnishings', 'Binders', 'Paper', 'Art', 'Envelopes', 'Supplies', 'Labels']]}]},
+        {label: 'Europe', method: 'update', args: [{y: [['68138.595', '62994.864', '52963.11', '48567.593', '38136.776999999995', '36725.283', '34484.619', '26643.18', '23196.233999999997', '22166.79', '16557.435', '10930.185', '9959.003999999999', '9768.657', '5151.447']], x: [['Bookcases', 'Copiers', 'Appliances', 'Phones', 'Storage', 'Accessories', 'Art', 'Chairs', 'Machines', 'Binders', 'Furnishings', 'Supplies', 'Paper', 'Envelopes', 'Fasteners']]}]},
+        {label: 'USCA', method: 'update', args: [{y: [['58281.4649', '47295.6006', '43231.9457', '33331.4001', '30991.24889999999', '27446.90629999999', '24146.447199999995', '20253.983699999997', '13050.939999999999', '7317.085399999999', '6383.7276999999995', '5653.9956999999995', '3992.5568999999873', '3408.513', '-916.0773000000007']], x: [['Copiers', 'Phones', 'Accessories', 'Paper', 'Binders', 'Chairs', 'Storage', 'Appliances', 'Furnishings', 'Art', 'Envelopes', 'Labels', 'Machines', 'Fasteners', 'Supplies']]}]},
+        {label: 'LATAM', method: 'update', args: [{y: [['42045.44308', '30177.487999999998', '28781.192000000003', '27008.138', '26148.148', '24887.503999999997', '16208.539999999999', '7570.8679999999995', '6950.696', '6273.052', '6076.496', '5317.94', '2531.6', '2385.9320000000002', '2355.6459999999997']], x: [['Copiers', 'Phones', 'Chairs', 'Accessories', 'Appliances', 'Bookcases', 'Storage', 'Supplies', 'Art', 'Envelopes', 'Paper', 'Binders', 'Fasteners', 'Labels', 'Machines']]}]},
+        {label: 'Africa', method: 'update', args: [{y: [['17694.564', '14008.632000000001', '11915.085000000001', '7164.9180000000015', '6478.182000000001', '5948.115', '4010.6850000000004', '3977.2530000000006', '3670.2660000000014', '2784.084000000002', '2658.774', '2302.398', '2063.007', '1517.631', '1037.9460000000001']], x: [['Phones', 'Copiers', 'Storage', 'Bookcases', 'Accessories', 'Machines', 'Tables', 'Art', 'Appliances', 'Chairs', 'Binders', 'Furnishings', 'Paper', 'Envelopes', 'Supplies']]}]}
+    ],
+    direction: 'down',
+    showactive: true,
+    x: 0.5,
+    xanchor: 'center',
+    y: 1.15,
+    yanchor: 'top'
+}]};
+Plotly.newPlot('bar2', bar2_data, bar2_layout, {displayModeBar: false});
+</script>
+</body>
+</html>
