@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Global Superstore Sales Performance</title>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; color: #333; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .kpi-container { display: flex; justify-content: space-around; margin-bottom: 30px; }
+        .kpi-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-align: center; flex: 1; margin: 0 10px; }
+        .kpi-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .kpi-label { font-size: 14px; color: #7f8c8d; margin-top: 5px; }
+        .charts-row { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
+        .chart-box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex: 1; min-width: 450px; }
+        .filter-container { margin-bottom: 15px; }
+        .insights-box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .insights-box h3 { margin-top: 0; }
+        .preview-box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow-x: auto; }
+        .preview-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .preview-table th, .preview-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .preview-table th { background-color: #f8f9fa; }
+        select { padding: 5px; border-radius: 4px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Global Superstore Sales Performance</h1>
+        <p>Analysis of sales, profit, and customer segments across global markets</p>
+    </div>
+
+    <div class="kpi-container">
+        <div class="kpi-card"><div class="kpi-value">$12,649,677</div><div class="kpi-label">Total Revenue</div></div><div class="kpi-card"><div class="kpi-value">$1,473,755</div><div class="kpi-label">Total Profit</div></div><div class="kpi-card"><div class="kpi-value">178,317</div><div class="kpi-label">Units Sold</div></div><div class="kpi-card"><div class="kpi-value">25,728</div><div class="kpi-label">Total Orders</div></div>
+    </div>
+
+    <div class="charts-row">
+        <div class="chart-box">
+            <div class="filter-container">
+                <label>Filter by Category: </label>
+                <select id="barFilter" onchange="updateBarChart()">
+                    <option value="All">All Categories</option>
+                    <option value="Furniture">Furniture</option><option value="Office Supplies">Office Supplies</option><option value="Technology">Technology</option>
+                </select>
+            </div>
+            <div id="barChart" style="height: 400px;"></div>
+        </div>
+        <div class="chart-box">
+            <div class="filter-container">
+                <label>Filter by Market: </label>
+                <select id="pieFilter" onchange="updatePieChart()">
+                    <option value="All">All Markets</option>
+                    <option value="Africa">Africa</option><option value="Asia Pacific">Asia Pacific</option><option value="Europe">Europe</option><option value="LATAM">LATAM</option><option value="USCA">USCA</option>
+                </select>
+            </div>
+            <div id="pieChart" style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <div class="insights-box">
+        <h3>Key Insights</h3>
+        <ul>
+            <li><b>Technology</b> leads sales with <b>$4,748,657</b> in total revenue.</li><li><b>Europe</b> is the most profitable market, contributing <b>$451,745</b>.</li><li>The average discount across all orders is <b>14.29%</b>.</li><li>Shipping costs account for <b>10.74%</b> of total sales revenue.</li><li>A total of <b>25,728</b> unique orders were processed globally.</li>
+        </ul>
+    </div>
+
+    <div class="preview-box">
+        <h3>Data Preview (First 10 Rows)</h3>
+        <table border="1" class="dataframe preview-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Order ID</th>
+      <th>Order Date</th>
+      <th>Customer Name</th>
+      <th>Segment</th>
+      <th>Country</th>
+      <th>Category</th>
+      <th>Sales</th>
+      <th>Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>United States</td>
+      <td>Technology</td>
+      <td>321.980</td>
+      <td>162.1544</td>
+    </tr>
+    <tr>
+      <td>IN-2014-JR162107-41675</td>
+      <td>2014-02-05</td>
+      <td>Justin Ritter</td>
+      <td>Corporate</td>
+      <td>Australia</td>
+      <td>Furniture</td>
+      <td>3709.395</td>
+      <td>-288.7650</td>
+    </tr>
+    <tr>
+      <td>IN-2014-CR127307-41929</td>
+      <td>2014-10-17</td>
+      <td>Craig Reiter</td>
+      <td>Consumer</td>
+      <td>Australia</td>
+      <td>Technology</td>
+      <td>7175.171</td>
+      <td>3919.9710</td>
+    </tr>
+    <tr>
+      <td>ES-2014-KM1637548-41667</td>
+      <td>2014-01-28</td>
+      <td>Katherine Murray</td>
+      <td>Home Office</td>
+      <td>Germany</td>
+      <td>Technology</td>
+      <td>2892.510</td>
+      <td>2096.5400</td>
+    </tr>
+    <tr>
+      <td>SG-2014-RH9495111-41948</td>
+      <td>2014-11-05</td>
+      <td>Rick Hansen</td>
+      <td>Consumer</td>
+      <td>Senegal</td>
+      <td>Technology</td>
+      <td>3832.960</td>
+      <td>311.5200</td>
+    </tr>
+    <tr>
+      <td>IN-2014-JM156557-41818</td>
+      <td>2014-06-28</td>
+      <td>Jim Mitchum</td>
+      <td>Corporate</td>
+      <td>Australia</td>
+      <td>Technology</td>
+      <td>2862.675</td>
+      <td>763.2750</td>
+    </tr>
+    <tr>
+      <td>IN-2012-TS2134092-41219</td>
+      <td>2012-11-06</td>
+      <td>Toby Swindell</td>
+      <td>Consumer</td>
+      <td>New Zealand</td>
+      <td>Furniture</td>
+      <td>1822.080</td>
+      <td>564.8400</td>
+    </tr>
+    <tr>
+      <td>IN-2013-MB1808592-41378</td>
+      <td>2013-04-14</td>
+      <td>Mick Brown</td>
+      <td>Consumer</td>
+      <td>New Zealand</td>
+      <td>Furniture</td>
+      <td>5244.840</td>
+      <td>996.4800</td>
+    </tr>
+    <tr>
+      <td>CA-2014-AB10015140-41954</td>
+      <td>2014-11-11</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>United States</td>
+      <td>Furniture</td>
+      <td>341.960</td>
+      <td>54.7136</td>
+    </tr>
+    <tr>
+      <td>CA-2012-AB10015140-40974</td>
+      <td>2012-03-06</td>
+      <td>Aaron Bergman</td>
+      <td>Consumer</td>
+      <td>United States</td>
+      <td>Furniture</td>
+      <td>48.712</td>
+      <td>5.4801</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+    <script>
+        const barData = {"All": {"x": ["Phones", "Copiers", "Chairs", "Bookcases", "Storage", "Appliances", "Machines", "Tables", "Accessories", "Binders", "Furnishings", "Art", "Supplies", "Paper", "Envelopes"], "y": [1708924.1392, 1511436.27328, 1501681.7641999999, 1466572.2418, 1127812.9694, 1010535.525, 779060.0671000001, 757041.9244, 749237.0185, 461882.8337, 385155.9679, 373613.1539, 242811.1326, 241848.9074, 169217.4896]}, "Furniture": {"x": ["Chairs", "Bookcases", "Tables", "Furnishings"], "y": [1501681.7641999999, 1466572.2418, 757041.9244, 385155.9679]}, "Office Supplies": {"x": ["Storage", "Appliances", "Binders", "Art", "Supplies", "Paper", "Envelopes", "Fasteners", "Labels"], "y": [1127812.9694, 1010535.525, 461882.8337, 373613.1539, 242811.1326, 241848.9074, 169217.4896, 89495.0459, 73350.276]}, "Technology": {"x": ["Phones", "Copiers", "Machines", "Accessories"], "y": [1708924.1392, 1511436.27328, 779060.0671000001, 749237.0185]}};
+        const pieData = {"All": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [6514110.79786, 3825697.52146, 2309868.41056]}, "Africa": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [424766.809, 204938.95500000002, 155067.44700000001]}, "Asia Pacific": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [2058466.0903999999, 1215138.9918, 771053.1858]}, "Europe": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [1696749.0315, 1033906.9965, 556680.2055]}, "LATAM": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [1134908.41196, 645252.48136, 385519.09376]}, "USCA": {"labels": ["Consumer", "Corporate", "Home Office"], "values": [1199220.455, 726460.0968, 441548.4785]}};
+
+        function updateBarChart() {
+            const val = document.getElementById('barFilter').value;
+            const data = barData[val];
+            const trace = {
+                x: data.x,
+                y: data.y,
+                type: 'bar',
+                marker: { color: '#3498db' }
+            };
+            const layout = {
+                title: 'Sales by Sub-Category',
+                margin: { t: 40, b: 80, l: 60, r: 20 },
+                xaxis: { tickangle: -45 }
+            };
+            Plotly.react('barChart', [trace], layout);
+        }
+
+        function updatePieChart() {
+            const val = document.getElementById('pieFilter').value;
+            const data = pieData[val];
+            const trace = {
+                labels: data.labels,
+                values: data.values,
+                type: 'pie',
+                hole: 0.4,
+                marker: { colors: ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#34495e', '#1abc9c', '#e67e22'] }
+            };
+            const layout = {
+                title: 'Sales by Customer Segment',
+                margin: { t: 40, b: 20, l: 20, r: 20 }
+            };
+            Plotly.react('pieChart', [trace], layout);
+        }
+
+        // Initial render
+        updateBarChart();
+        updatePieChart();
+    </script>
+</body>
+</html>
